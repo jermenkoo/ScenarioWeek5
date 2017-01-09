@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-
+sudo apt-add-repository ppa:fish-shell/release-2
 sudo apt-get update
 sudo apt-get install -y emacs
 echo "mysql-server-5.5 mysql-server/root_password password root" | debconf-set-selections
 echo "mysql-server-5.5 mysql-server/root_password_again password root" | debconf-set-selections
 sudo apt-get install -y lamp-server^ phpmyadmin
+sudo apt-get install -y fish
+
 
 sudo echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
 
