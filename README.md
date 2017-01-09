@@ -6,8 +6,8 @@ The application is modelled on Google Gruyere, you may design your own applicati
 
 | Number |  Description | Assigned To | Done | Vulnerability |
 |--------|--------------|-------------|------|---------------|
-| 1 | A user must set a login name and password using an HTML form. | | | |
-| 2 | A user must sign-in using their login name and password.| | | |
+| 1 | A user must set a login name and password using an HTML form. |Janos| | |
+| 2 | A user must sign-in using their login name and password.|Janos| | |
 | 3 | A user may set or modify a user name. The user name will be shown in the menu bar of the application. | | | |
 | 4 | A user may set or modify the following attributes: password, URL for an icon, URL for a homepage, profile colour (text description), a private snippet. | | | |
 | 5 | An administrator can edit the profile attributes of any user, as listed above. | | | |
