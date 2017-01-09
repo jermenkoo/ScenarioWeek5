@@ -59,7 +59,7 @@ Links:
 * https://www.owasp.org/index.php/Testing_for_CSS_Injection_(OTG-CLIENT-005)
 * http://httpsecure.org/?works=css-injection
 * https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet (how to prevent CSS injection)
-* https://packetstormsecurity.com/files/129696/eBay.com-oc  snext-CSS-Injection.html (example vulnerability from the past)
+* https://packetstormsecurity.com/files/129696/eBay.com-ocsnext-CSS-Injection.html (example vulnerability from the past)
 
 ### Cross-Site Request Forgery (CSRF)
 The vulnerable version will be vulnerable to CSRF in multiple places:
