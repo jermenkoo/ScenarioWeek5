@@ -1,5 +1,5 @@
 <?php
-  public function login($username, $password)
+  public function loggedIn($username, $password)
   {
     return true
   }
