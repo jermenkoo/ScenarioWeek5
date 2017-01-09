@@ -18,5 +18,4 @@
       die('Could not create user: ' . mysql_error());
     }
   }
-  loggedIn("marco", "123");
 ?>
