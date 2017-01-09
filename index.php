@@ -3,10 +3,10 @@
         <link rel="stylesheet" href="./styles/style.css">
     </head>
     <body>
-    <?php 
-    include 'header.php';
+    <?php
+    include 'src/view/header.php';
     echo loginForm("test");
-    include 'loginForm.php';
+    include 'src/view/loginForm.php';
     ?>
     </body>
 </html>
