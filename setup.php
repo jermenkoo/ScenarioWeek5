@@ -1,13 +1,8 @@
 <?php
-
-  $dbhost = 'localhost:3036';
-  $dbuser = 'root';
-  $dbpass = 'root';
-  $conn = mysql_connect($dbhost, $dbuser, $dbpass);
-
-  if(! $conn ) {
-    die('Could not connect: ' . mysql_error());
-  }
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+  include 'db.php';
 
   echo 'Connected successfully';
 
@@ -35,7 +30,9 @@
     die('Could not create table: ' . mysql_error());
   }
 
-  echo "Table employee created successfully\n";
+  echo "Table user created successfully\n";
+  createUser("marco", "123");
+  createUser("jaro", "123");
 
   mysql_close($conn);
 ?>
