@@ -8,7 +8,6 @@
     if (!$retval) {
       return false;
     }
-    return true;
   }
   function createUser($username, $password){
     global $conn;
