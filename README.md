@@ -22,6 +22,12 @@
 ### Cross Site Scripting (XSS)
 
 ### SQL Injection (SQLi)
+The vulnerable version of the website will operate on raw SQL queries, allowing SQLi to be present.
+SQL injection should be (ideally) present in these spaces:
+
+* Login dialog - the idea is to perform a raw SQL query like this: `statement = "SELECT * FROM users WHERE name = '" + userName + "';"`. If we inject a payload similar to this `' OR '1'='1' --`, it renders the following SQL query `SELECT * FROM users WHERE name = '' OR '1'='1' -- ';`, which allows us to login as our user.
+
+* Snippet browsing - assuming the SQL query behind looks like `"SELECT * FROM snippets WHERE id=" + id`, it is possible to inject `id` parameter.
 
 ### CSS Injection
 
