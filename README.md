@@ -23,4 +23,8 @@
 
 ### SQL Injection (SQLi)
 
+### CSS Injection
+
 ### Cross-Site Request Forgery (CSRF)
+
+### Unsecure File Upload
