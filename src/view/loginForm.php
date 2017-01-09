@@ -1,13 +1,7 @@
-<?php 
-function loginForm($path) { ob_start(); ?>
-<form> 
+<form action="index.php" method="get"> 
     Login Name </br>
-    <input type="text" name="login"></br>
+    <input type="text" name="username"></br>
     Password </br>
-    <input type="password" name="password"></br>
+    <input type="password" name="pw"></br>
     <input type="submit" value="Login!">
 </form>
-
-<?php 
-    return ob_get_clean(); }
-?>
