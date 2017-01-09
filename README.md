@@ -5,13 +5,13 @@
 The application is modelled on Google Gruyere, you may design your own application if you wish. The set of features is not complete but represents a subset that you can start with. The Gruyere application refers to snippets. A snippet is simply text that may contain, in this case, some basic HTML formatting. Think of it as a small blog post.
 
 | Number |  Description | Assigned To | Done | Vulnerability |
-|--------|-------------|------|------|-|
+|--------|--------------|-------------|------|---------------|
 | 1 | A user must set a login name and password using an HTML form. | | | |
 | 2 | A user must sign-in using their login name and password.| | | |
-| 3 | A user may set or modify a user name. The user name will be shown in the menu bar of the application. | | |
-| 4 | A user may set or modify the following attributes: password, URL for an icon, URL for a homepage, profile colour (text description), a private snippet. | |
-| 5 | An administrator can edit the profile attributes of any user, as listed above. | | |
-| 6 | In addition, an administrator can edit the permissions associated with the user. These are:  Whether the user is an administrator or not. Whether the user can create snippets or not. | | |
+| 3 | A user may set or modify a user name. The user name will be shown in the menu bar of the application. | | | |
+| 4 | A user may set or modify the following attributes: password, URL for an icon, URL for a homepage, profile colour (text description), a private snippet. | | | |
+| 5 | An administrator can edit the profile attributes of any user, as listed above. | | | |
+| 6 | In addition, an administrator can edit the permissions associated with the user. These are:  Whether the user is an administrator or not. Whether the user can create snippets or not. | | | |
 | 7 | A user can create a snippet. | | | |
 | 8 | A user can delete one of their own snippets. | | | |
 | 9 | If the user is not logged in, the Home page contains links to the sign-in and sign-up functions. The Home page also contains a list of all the users. A list containing information about all users. The following is displayed for each user: The user’s user name; The last snippet created by the user; A link to a page displaying all the user’s snippets. | | | |
