@@ -16,12 +16,13 @@
 
   $sql = 'CREATE TABLE user( '.
     'id INT NOT NULL AUTO_INCREMENT, '.
-    'username VARCHAR(20) NOT NULL, '.
+    'username VARCHAR(20) NOT NULL UNIQUE, '.
     'password  VARCHAR(30) NOT NULL, '.
-    'color   VARCHAR(100), '.
+    'colour   VARCHAR(100), '.
     'icon    VARCHAR(100), '.
     'homepage   VARCHAR(100), '.
     'isAdmin   BOOL NOT NULL, '.
+    'UNIQUE (username), '.
     'primary key ( id ))';
   mysql_select_db('test_db');
   $retvalCreate = mysql_query( $sql, $conn );
