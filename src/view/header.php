@@ -34,7 +34,8 @@
 
         <?php
     } else {
-        echo "<div class='nav-buttons'>",
+        echo "<div></div>",
+            "<div class='nav-buttons'>",
             "<a href='/src/view/account/login.php'><span class='user-button'>Log in</span></a>",
             "<a href='/src/view/account/signup.php'><span class='user-button'>Sign up</span></a>",
             "</div>";
