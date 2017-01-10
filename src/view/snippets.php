@@ -35,7 +35,7 @@
             $snippets = getAllSnippets($_COOKIE['id']);
 
             foreach ($snippets as $snippet) { ?>
-               <div class='snippet-container><?php echo $snippet['snippet'] ?>
+               <div class="snippet-container"><?php echo $snippet['snippet'] ?>
                <a href="<?php echo basename($_SERVER['PHP_SELF']); ?>?delete=<?php echo $snippet['id']; ?>">Delete</a></div>
             <?php
             }
