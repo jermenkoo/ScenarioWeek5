@@ -34,3 +34,7 @@ input[type=submit] {
     display: inline-block;
     margin-right: 20px;
 }
+
+.nav-button {
+    cursor: pointer;
+}
