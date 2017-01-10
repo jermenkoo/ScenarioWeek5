@@ -22,6 +22,7 @@
     'icon    VARCHAR(100), '.
     'homepage   VARCHAR(100), '.
     'isAdmin   BOOL NOT NULL, '.
+    'privSnippet VARCHAR(10000),'.
     'UNIQUE (username), '.
     'primary key ( id ))';
   mysql_select_db('test_db');

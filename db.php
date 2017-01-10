@@ -1,6 +1,6 @@
 <?php
   include 'config.php';
-  $db = 'test_db'; 
+  $db = 'test_db';
 
   function loggedIn($username, $password){
     global $conn;
@@ -45,7 +45,30 @@
     }
     $result = mysql_result($retval, 0);
     return $result;
-  } 
+  }
+  function setPrivSnippet($id, $snippet){
+    global $conn;
+    global $db;
+
+    $sql = sprintf("UPDATE  `user` SET privSnippet='%s' WHERE id=%s;", $snippet, $id);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn );
+    if (!$retval) {
+      die('Could not update private snippet: ' . mysql_error());
+    }
+  }
+  function getPrivSnippet($id){
+    global $conn;
+    global $db;
+    $sql = sprintf("SELECT privSnippet FROM user WHERE id=%s;", $id);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn );
+    if (!$retval) {
+      die('Could not get private snippet: ' . mysql_error());
+    }
+    $result = mysql_result($retval, 0);
+    return $result;
+  }
   function getAllUsers() {
     global $db;
     global $conn;
