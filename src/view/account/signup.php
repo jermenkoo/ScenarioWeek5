@@ -21,7 +21,7 @@
         die();
     } else {
         echo '<center>';
-        include '../forms/loginForm.php';
+        include '../forms/signupForm.php';
         echo '</center>';
     }
     ?>
