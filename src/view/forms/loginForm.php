@@ -1,5 +1,5 @@
 
-<form action="/src/view/login.php" method="post"> 
+<form action="/src/view/account/login.php" method="post"> 
     Login Name </br>
     <input type="text" name="username"></br>
     Password </br>
