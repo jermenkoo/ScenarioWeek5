@@ -32,7 +32,7 @@
             $snippets = getAllSnippets($_COOKIE['id']);
 
             foreach ($snippets as $snippet) {
-               echo "<div>";
+               echo "<div class='snippet-container'>";
                echo $snippet;
                echo "</div>";
             }
