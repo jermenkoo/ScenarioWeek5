@@ -34,6 +34,8 @@
   echo "Table user created successfully\n";
   createUser("marco", "123");
   createUser("jaro", "123");
+  createUser("marti", "123");
+  createUser("janos", "123");
 
   mysql_close($conn);
 ?>
