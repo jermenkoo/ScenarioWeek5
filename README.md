@@ -6,8 +6,8 @@ The application is modelled on Google Gruyere, you may design your own applicati
 
 | Number |  Description | Assigned To | Done | Vulnerability |
 |--------|--------------|-------------|------|---------------|
-| 1 | A user must set a login name and password using an HTML form. | | | |
-| 2 | A user must sign-in using their login name and password.| | | |
+| 1 | A user must set a login name and password using an HTML form. |Janos| | |
+| 2 | A user must sign-in using their login name and password.|Janos| | |
 | 3 | A user may set or modify a user name. The user name will be shown in the menu bar of the application. | | | |
 | 4 | A user may set or modify the following attributes: password, URL for an icon, URL for a homepage, profile colour (text description), a private snippet. | | | |
 | 5 | An administrator can edit the profile attributes of any user, as listed above. | | | |
@@ -29,7 +29,10 @@ The vulnerable version will be vulnerable to XSS. (obviously, baby!)
 **FIX:** Escape your inputs.
 
 Links:
-* https://github.com/cure53/DOMPurify
+
+* https://github.com/stamparm/DSXS - an automated XSS vulnerability scanner. (penetration)
+* https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project - 2nd-state-of-the-art SQL injection scanner. (penetration)
+* https://github.com/cure53/DOMPurify - a DOM-only, super-fast, uber-tolerant XSS sanitizer for HTML, MathML and SVG. (prevention)
 
 ### SQL Injection (SQLi)
 The vulnerable version of the website will operate on raw SQL queries, allowing SQLi to be present.
@@ -42,7 +45,13 @@ SQL injection should be (ideally) present in these spaces:
 **FIX:** Use prepared statements and parametrized queries. Escape your inputs.
 
 Links:
-* https://stackoverflow.com/questions/60174/how-can-i-prevent-sql-injection-in-php
+* https://sqlmap.org/ - state-of-the-art SQL injection scanner. (penetration)
+* https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project - 2nd-state-of-the-art SQL injection scanner. (penetration)
+* https://github.com/stamparm/DSSS - an automated SQL injection scanner. (penetration)
+* https://w3af.org/ - another SQL injection scanner, albeit not Python / Ruby based. (penetration)
+* https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet - a big list how to prevent SQLi. (prevention)
+* https://stackoverflow.com/questions/60174/how-can-i-prevent-sql-injection-in-php - example how to use PDO, a method to fight SQLi. (prevention)
+
 
 ### CSS Injection
 
@@ -50,7 +59,7 @@ Links:
 * https://www.owasp.org/index.php/Testing_for_CSS_Injection_(OTG-CLIENT-005)
 * http://httpsecure.org/?works=css-injection
 * https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet (how to prevent CSS injection)
-* https://packetstormsecurity.com/files/129696/eBay.com-oc  snext-CSS-Injection.html (example vulnerability from the past)
+* https://packetstormsecurity.com/files/129696/eBay.com-ocsnext-CSS-Injection.html (example vulnerability from the past)
 
 ### Cross-Site Request Forgery (CSRF)
 The vulnerable version will be vulnerable to CSRF in multiple places:
@@ -59,7 +68,11 @@ The vulnerable version will be vulnerable to CSRF in multiple places:
 
 * Delete snippets - if a user clicks on link pointing to `<website>/delete?id=<id>` (or similar), his snippet with id `id` should get deleted. (that's the idea)
 
-**FIX:** Use a nonce to prevent this. (https://www.owasp.org/index.php/PHP_CSRF_Guard)
+
+Links:
+* https://www.owasp.org/index.php/Testing_for_CSRF_(OTG-SESS-005) - automated testing for CSRF. (penetration / prevention)
+* https://www.owasp.org/index.php/CSRFTester_Usage - automated testing for CSRF. (penetration / prevention)
+* https://www.owasp.org/index.php/PHP_CSRF_Guard - session & nonce example to prevent CSRF. (prevention)
 
 ### Unsecure File Upload
 * Not validating extension at all
@@ -68,9 +81,12 @@ The vulnerable version will be vulnerable to CSRF in multiple places:
 * Validate the MIME type of a file! Apache can execute when using `AddHandler` even files like `.php`, `.php.jpg` etc. as `.php` file; uploading `shell.php.jpg` bypasses this.
 
 Links:
-* https://www.acunetix.com/websitesecurity/upload-forms-threat/
+* https://www.acunetix.com/websitesecurity/upload-forms-threat/ - examples & exploitation of Unsecure File Upload. (penetration / prevention)
 
 ### Bruteforce Login
 It should be possible to bruteforce the access to the website trying as many as username:password combinations as possible.
+
+Links:
+* https://support.portswigger.net/customer/portal/articles/1964020-using-burp-to-brute-force-a-login-page - Burp Proxy, a tool to bruteforce logins. (penetration)
 
 ### Application Misconfiguration
