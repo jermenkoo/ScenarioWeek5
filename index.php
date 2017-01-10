@@ -1,3 +1,9 @@
+<?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
 <html>
     <head>
         <link rel="stylesheet" href="./src/styles/style.css">
@@ -11,9 +17,8 @@
     if ( isset($_GET['username']) && isset($_GET['pw']) && loggedIn($_GET['username'], $_GET['pw'])) {
        echo 'hello';
     } else {
-        echo '<center>';
-        include 'src/view/loginForm.php';
-        echo '</center>';
+       echo getAllUsers();
+       
     }
 
     
