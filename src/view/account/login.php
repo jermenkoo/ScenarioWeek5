@@ -16,7 +16,7 @@
             setcookie("user", "", time() - 3600);
             setcookie("pw", "", time() - 3600);
             setcookie("id", "", time() - 3600);
-            header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/src/view/login.php');
+            header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/src/view/account/login.php');
         }
         die();
     } elseif (isset($_POST['username']) && isset($_POST['pw'])) { // Log in post request
