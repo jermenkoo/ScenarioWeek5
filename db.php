@@ -1,7 +1,7 @@
 <?php
   include 'config.php';
   $db = 'test_db'; 
-  
+
   function loggedIn($username, $password){
     global $conn;
     global $db;
@@ -55,5 +55,6 @@
     if (!$retval) {
       die('Could not get users: ' . mysql_error());
     }
+    return mysql_fetch_array($retval);
   }
 ?>
