@@ -15,17 +15,14 @@
         if (!isset($_COOKIE['user']) or !isset($_COOKIE['pw']) or !validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
             header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
             die();
-
         } else {
-
             if (isset($_POST["snippet"])) {
                 createSnippet($_POST["snippet"], $_COOKIE["id"]);
                 $_POST = array();
             }
             else if (isset($_GET['delete'])){
                 deleteSnippet($_GET['delete']);
-            }
-            ?>
+            }  ?>
             <div>
                 <div class="snippet-form">
                     <textarea name="snippet" form="snippet">Enter your snippet</textarea>
