@@ -49,12 +49,16 @@
   function getAllUsers() {
     global $db;
     global $conn;
-    $sql = sprintf("SELECT * FROM `user`");
+    $sql = sprintf("SELECT * FROM user");
     mysql_select_db($db);
     $retval = mysql_query( $sql, $conn);
     if (!$retval) {
       die('Could not get users: ' . mysql_error());
     }
-    return mysql_fetch_array($retval);
+    $arr = array();
+    while ($res = mysql_fetch_array($retval, MYSQL_BOTH)){
+      $arr[] = $res;
+    }
+    return $arr;
   }
 ?>
