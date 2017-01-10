@@ -2,7 +2,7 @@
   include 'config.php';
   $db = 'test_db';
 
-  function loggedIn($username, $password){
+  function validCredentials($username, $password){
     global $conn;
     global $db;
     $sql = sprintf("SELECT * FROM `user` WHERE username='%s' and password='%s'", $username, $password);

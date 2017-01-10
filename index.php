@@ -13,11 +13,12 @@ error_reporting(E_ALL);
     <?php
     include 'db.php';
     include 'src/view/header.php';
-    // check if the user is logged in
-    if (isset($_GET['username']) && isset($_GET['pw']) && loggedIn($_GET['username'], $_GET['pw'])) {
-       echo 'hello';
+
+    // User is logged in
+    if (isset($_COOKIE['user']) && isset($_COOKIE['pw']) && validCredentials($_COOKIE['user'], $_COOKIE['user'])) {
+        include 'src/view/publicUsersTable.php';
     } else {
-       include 'src/view/publicUsersTable.php';
+        include 'src/view/publicUsersTable.php';
     }
     ?>
     </body>
