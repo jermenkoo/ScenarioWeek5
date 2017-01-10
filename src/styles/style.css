@@ -39,3 +39,7 @@ input[type=submit] {
     cursor: pointer;
     margin: 10px;
 }
+
+.snippet-form {
+    margin: 30px;
+}
