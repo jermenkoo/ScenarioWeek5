@@ -54,6 +54,11 @@
   createUser("jaro", "123");
   createUser("marti", "123");
   createUser("janos", "123");
+  createSnippet("hello world", 1);
+  createSnippet("how are you?", 1);
+  createSnippet("good", 2);
+  createSnippet("totally", 3);
+  createSnippet("WOW", 4);
 
   mysql_close($conn);
 ?>
