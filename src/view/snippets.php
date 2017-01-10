@@ -15,9 +15,9 @@
         if (!isset($_COOKIE['user']) or !isset($_COOKIE['pw']) or !validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
             header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
             die();
-        } else {                
-            ?>
 
+        } else {
+            ?>
             <div>
                 <div class="snippet-form">
                     <textarea name="snippet" form="snippet">Enter your snippet</textarea>
@@ -33,11 +33,12 @@
 
             foreach ($snippets as $snippet) {
                echo "<div class='snippet-container'>";
-               echo $snippet;
+               echo $snippet['snippet'];
                echo "</div>";
+
             }
 
-            echo "</div>";      
+            echo "</div>";
        }
     ?>
     </body>
