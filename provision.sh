@@ -11,6 +11,7 @@ sudo echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
 
 #change the config of the apache
 sudo -i 
+chmod 777 /vagrant/src/logic/uploads
 
 #make vagrant default shell
 usermod -s /usr/bin/fish vagrant #for the normal user 
