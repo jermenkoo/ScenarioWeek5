@@ -1,0 +1,41 @@
+body {
+    margin: 0px;
+}
+
+form {
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+input[type=submit] {
+    display: block;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.nav {
+    height: 50px;
+    width: 100%;
+    background-color: red;
+    display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-justify-content: flex-end;
+   justify-content: flex-end;
+   align-items: center;
+}
+
+.nav-buttons {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.user-button {
+    cursor: pointer;
+    margin: 10px;
+}
