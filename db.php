@@ -87,8 +87,7 @@
   function createSnippet($snippet, $userId){
     global $conn;
     global $db;
-
-    $sql = sprintf("INSERT INTO snippet (snippet, userId) VALUES ('%s', '%s');", $snippet, $userId);
+    $sql = sprintf("INSERT INTO snippet (userId, snippet) VALUES ('%s', '%s');", $userId, $snippet);
     mysql_select_db($db);
     $retval = mysql_query( $sql, $conn );
     if (!$retval) {
@@ -106,6 +105,13 @@
     }
     $result = mysql_result($retval, 0);
     return $result;
+  }
+  function deleteSnippet($snippetId){
+      global $db;
+      global $conn;
+      $sql = sprintf("DELETE * FROM snippet WHERE id=%s", $snippetId);
+      mysql_select_db($db);
+      return;
   }
   function getAllSnippets($userId){
     global $db;

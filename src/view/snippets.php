@@ -17,6 +17,9 @@
             die();
 
         } else {
+         if (isset($_GET['delete'])){
+             deleteSnippet($_GET['delete']);
+         }
             ?>
             <div>
                 <div class="snippet-form">
@@ -31,11 +34,10 @@
             <?php
             $snippets = getAllSnippets($_COOKIE['id']);
 
-            foreach ($snippets as $snippet) {
-               echo "<div>";
-               echo $snippet['snippet'];
-               echo "</div>";
-
+            foreach ($snippets as $snippet) { ?>
+               <div><?php echo $snippet['snippet'] ?>
+               <a href="<?php echo basename($_SERVER['PHP_SELF']); ?>?delete=<?php echo $snippet['id']; ?>">Delete</a></div>
+            <?php
             }
 
             echo "</div>";

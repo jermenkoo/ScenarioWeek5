@@ -13,7 +13,6 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     <?php
     include 'db.php';
     include 'src/view/header.php';
-
     // User is logged in
     if (isset($_COOKIE['user']) && isset($_COOKIE['pw']) && validCredentials($_COOKIE['user'], $_COOKIE['user'])) {
         include 'src/view/publicUsersTable.php';
