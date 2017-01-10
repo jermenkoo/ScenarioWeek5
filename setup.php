@@ -35,6 +35,7 @@
   $tableSnippet = 'CREATE TABLE snippet( '.
     'id INT NOT NULL AUTO_INCREMENT, '.
     'snippet  VARCHAR(10000), '.
+    'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, '.
     'userId   INT NOT NULL, '.
     'FOREIGN KEY fkUser(userId) '.
     'REFERENCES user(id) '.
