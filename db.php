@@ -84,4 +84,27 @@
     }
     return $arr;
   }
+  function createSnippet($snippet, $userId){
+    global $conn;
+    global $db;
+
+    $sql = sprintf("INSERT INTO snippet (snippet, userId) VALUES ('%s', '%s');", $snippet, $userId);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn );
+    if (!$retval) {
+      die('Could not create snippet: ' . mysql_error());
+    }
+  }
+  function getPublicSnippet($userId){
+    global $db;
+    global $conn;
+    $sql = sprintf("SELECT snippet FROM snippet WHERE userId=%s ORDER BY createdAt DESC", $userId);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn);
+    if (!$retval) {
+      die('Could not get snippets: ' . mysql_error());
+    }
+    $result = mysql_result($retval, 0);
+    return $result;
+  }
 ?>
