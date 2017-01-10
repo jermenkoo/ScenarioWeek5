@@ -7,7 +7,15 @@
             <a href='/'><span class='user-button'>Home</span></a>
             <a href='/src/view/snippets.php'><span class='user-button'>Snippets</span></a>
             <a href='/src/view/uploadFile.php'><span class='user-button'>Upload file</span></a>
-            <span id="logout">Log out</p>
+
+            <?php 
+                $user = $_COOKIE['user'];
+                $colour = getColour($_COOKIE['id']) ? getColour($_COOKIE['id']) : "black";
+                $colouredUser = sprintf("<span style='color: %s'>%s</span>", $colour, $user);
+                echo $colouredUser;
+            ?>
+
+            <span id="logout">Log out</span>
 
             <script>
                 document.getElementById("logout").addEventListener("click", logOut);
@@ -23,10 +31,6 @@
                     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
                 }
             </script>
-
-            <?php 
-                echo $_COOKIE['user'];
-            ?>
         </div>
 
         <?php

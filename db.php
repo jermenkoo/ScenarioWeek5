@@ -109,14 +109,17 @@
   function deleteSnippet($snippetId){
       global $db;
       global $conn;
-      $sql = sprintf("DELETE * FROM snippet WHERE id=%s", $snippetId);
+      $sql = sprintf("DELETE FROM snippet WHERE id=%s", $snippetId);
       mysql_select_db($db);
-      return;
+      $retval = mysql_query( $sql, $conn);
+      if (!$retval) {
+          die('Invalid query: ' . mysql_error());
+      }
   }
   function getAllSnippets($userId){
     global $db;
     global $conn;
-    $sql = sprintf("SELECT snippet,id FROM snippet WHERE userId=%s ORDER BY createdAt DESC", $userId);
+    $sql = sprintf("SELECT snippet, id FROM snippet WHERE userId=%s ORDER BY createdAt DESC", $userId);
     mysql_select_db($db);
     $retval = mysql_query( $sql, $conn);
     if (!$retval) {
