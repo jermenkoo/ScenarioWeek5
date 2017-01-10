@@ -154,4 +154,29 @@
     $result = mysql_result($retval, 0);
     return $result;
   }
+  function createFile($fileName, $userId){
+    global $conn;
+    global $db;
+    $sql = sprintf("INSERT INTO file (userId, fileName) VALUES ('%s', '%s');", $userId, $fileName);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn );
+    if (!$retval) {
+      die('Could not create snippet: ' . mysql_error());
+    }
+  }
+  function getAllFiles($userId){
+    global $db;
+    global $conn;
+    $sql = sprintf("SELECT fileName, id FROM snippet WHERE userId=%s ORDER BY createdAt DESC", $userId);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn);
+    if (!$retval) {
+      die('Could not get files: ' . mysql_error());
+    }
+    $arr = array();
+    while ($res = mysql_fetch_array($retval, MYSQL_BOTH)){
+      $arr[] = $res;
+    }
+    return $arr;
+  }
 ?>
