@@ -131,4 +131,27 @@
     }
     return $arr;
   }
+  function setIcon($id, $icon){
+    global $conn;
+    global $db;
+
+    $sql = sprintf("UPDATE  `user` SET icon='%s' WHERE id=%s;", $icon, $id);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn );
+    if (!$retval) {
+      die('Could not update icon: ' . mysql_error());
+    }
+  }
+  function getIcon($id){
+    global $conn;
+    global $db;
+    $sql = sprintf("SELECT icon FROM user WHERE id=%s;", $id);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn );
+    if (!$retval) {
+      die('Could not get icon: ' . mysql_error());
+    }
+    $result = mysql_result($retval, 0);
+    return $result;
+  }
 ?>

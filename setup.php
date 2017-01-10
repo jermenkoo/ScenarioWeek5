@@ -19,7 +19,7 @@
     'username VARCHAR(20) NOT NULL UNIQUE, '.
     'password  VARCHAR(30) NOT NULL, '.
     'colour   VARCHAR(100), '.
-    'icon    VARCHAR(100), '.
+    'icon    VARCHAR(10000), '.
     'homepage   VARCHAR(100), '.
     'isAdmin   BOOL NOT NULL, '.
     'privSnippet VARCHAR(10000),'.
