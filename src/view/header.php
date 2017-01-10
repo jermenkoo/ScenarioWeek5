@@ -3,19 +3,18 @@
     if (isset($_COOKIE['user']) && isset($_COOKIE['pw']) && validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
         ?>
 
+        <?php
+            $user = $_COOKIE['user'];
+            $colour = getColour($_COOKIE['id']) ? getColour($_COOKIE['id']) : "black";
+            $colouredUser = sprintf("<span style='color: %s; margin-left: 10px;'>%s</span>", $colour, $user);
+            echo $colouredUser;
+        ?>
+
         <div class='nav-buttons'>
             <a href='/'><span class='user-button'>Home</span></a>
             <a href='/src/view/snippets.php'><span class='user-button'>Snippets</span></a>
             <a href='/src/view/uploadFile.php'><span class='user-button'>Upload file</span></a>
-
-            <?php 
-                $user = $_COOKIE['user'];
-                $colour = getColour($_COOKIE['id']) ? getColour($_COOKIE['id']) : "black";
-                $colouredUser = sprintf("<span style='color: %s'>%s</span>", $colour, $user);
-                echo $colouredUser;
-            ?>
-
-            <span id="logout">Log out</span>
+            <a href="" id="logout">Log out</a>
 
             <script>
                 document.getElementById("logout").addEventListener("click", logOut);
