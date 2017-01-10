@@ -26,10 +26,7 @@
                echo "<div>";
                echo $snippet;
                echo "</div>";
-           }
-           
-
-           
+           }           
        }
     ?>
     </body>
