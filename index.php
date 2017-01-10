@@ -1,7 +1,7 @@
-<?php 
+<?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 ?>
 
 <html>
@@ -9,7 +9,7 @@ error_reporting(E_ALL);
         <link rel="stylesheet" href="./src/styles/style.css">
     </head>
     <body>
-    
+
     <?php
     include 'db.php';
     include 'src/view/header.php';
