@@ -107,4 +107,19 @@
     $result = mysql_result($retval, 0);
     return $result;
   }
+  function getAllSnippets($userId){
+    global $db;
+    global $conn;
+    $sql = sprintf("SELECT snippet FROM snippet WHERE userId=%s ORDER BY createdAt DESC", $userId);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn);
+    if (!$retval) {
+      die('Could not get snippets: ' . mysql_error());
+    }
+    $arr = array();
+    while ($res = mysql_fetch_array($retval, MYSQL_BOTH)){
+      $arr[] = $res[0];
+    }
+    return $arr;
+  }
 ?>
