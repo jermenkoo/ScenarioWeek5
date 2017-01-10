@@ -17,16 +17,16 @@
             die();
         } else {
             include './forms/snippetForm.php';
-            
+
             echo "<div>";
 
             $snippets = getAllSnippets($_COOKIE['id']);
 
            foreach ($snippets as $snippet) {
                echo "<div>";
-               echo $snippet;
+               echo $snippet['snippet'];
                echo "</div>";
-           }           
+           }
        }
     ?>
     </body>

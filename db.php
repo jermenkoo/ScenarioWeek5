@@ -110,7 +110,7 @@
   function getAllSnippets($userId){
     global $db;
     global $conn;
-    $sql = sprintf("SELECT snippet FROM snippet WHERE userId=%s ORDER BY createdAt DESC", $userId);
+    $sql = sprintf("SELECT snippet,id FROM snippet WHERE userId=%s ORDER BY createdAt DESC", $userId);
     mysql_select_db($db);
     $retval = mysql_query( $sql, $conn);
     if (!$retval) {
@@ -118,7 +118,7 @@
     }
     $arr = array();
     while ($res = mysql_fetch_array($retval, MYSQL_BOTH)){
-      $arr[] = $res[0];
+      $arr[] = $res;
     }
     return $arr;
   }
