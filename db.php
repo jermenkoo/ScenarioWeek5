@@ -8,9 +8,9 @@
     $sql = sprintf("SELECT * FROM `user` WHERE username='%s' and password='%s'", $username, $password);
     mysql_select_db($db);
     $retval = mysql_query( $sql, $conn );
-    if (mysql_num_rows($result) == 1) {
-      return false;
-    } else { return true; }
+    if (mysql_num_rows($retval) == 1) {
+      return true;
+    } else { return false; }
   }
   function createUser($username, $password){
     global $conn;
