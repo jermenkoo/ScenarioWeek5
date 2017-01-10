@@ -43,3 +43,8 @@ input[type=submit] {
 .snippet-form {
     margin: 30px;
 }
+
+.snippet-list {
+    width: 70%;
+    margin-left: 30px;
+}

@@ -15,18 +15,29 @@
         if (!isset($_COOKIE['user']) or !isset($_COOKIE['pw']) or !validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
             header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
             die();
-        } else {
-            include './forms/snippetForm.php';
-            
-            echo "<div>";
+        } else {                
+            ?>
 
+            <div>
+                <div class="snippet-form">
+                    <textarea name="snippet" form="snippet">Enter your snippet</textarea>
+                    <form action="../logic/createSnippet.php" id="snippet" method="post">
+                        <input value="Create" type="submit">
+                    </form>
+                </div>
+            </div>
+
+            <div class="snippet-list">
+            <?php
             $snippets = getAllSnippets($_COOKIE['id']);
 
-           foreach ($snippets as $snippet) {
+            foreach ($snippets as $snippet) {
                echo "<div>";
                echo $snippet;
                echo "</div>";
-           }           
+            }
+
+            echo "</div>";      
        }
     ?>
     </body>
