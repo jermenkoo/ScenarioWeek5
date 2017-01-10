@@ -5,12 +5,12 @@
   function validCredentials($username, $password){
     global $conn;
     global $db;
-    $sql = sprintf("SELECT * FROM `user` WHERE username='%s' and password='%s'", $username, $password);
+    $sql = sprintf("SELECT id FROM `user` WHERE username='%s' and password='%s'", $username, $password);
     mysql_select_db($db);
     $retval = mysql_query( $sql, $conn );
     if (mysql_num_rows($retval) == 1) {
-      return true;
-    } else { return false; }
+      return [true, mysql_result($retval, 0)];
+    } else { return [false, -1]; }
   }
   function createUser($username, $password){
     global $conn;
