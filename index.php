@@ -17,7 +17,7 @@ error_reporting(E_ALL);
     if (isset($_GET['username']) && isset($_GET['pw']) && loggedIn($_GET['username'], $_GET['pw'])) {
        echo 'hello';
     } else {
-       echo getAllUsers();
+       include 'src/view/publicUsersTable.php';
     }
     ?>
     </body>

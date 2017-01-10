@@ -14,7 +14,7 @@
 
   echo "Database test_db created successfully\n";
 
-  $sql = 'CREATE TABLE user( '.
+  $tableUser = 'CREATE TABLE user( '.
     'id INT NOT NULL AUTO_INCREMENT, '.
     'username VARCHAR(20) NOT NULL UNIQUE, '.
     'password  VARCHAR(30) NOT NULL, '.
@@ -25,13 +25,29 @@
     'UNIQUE (username), '.
     'primary key ( id ))';
   mysql_select_db('test_db');
-  $retvalCreate = mysql_query( $sql, $conn );
+  $retval = mysql_query( $tableUser, $conn );
 
-  if(! $retvalCreate ) {
+  if(! $retval ) {
     die('Could not create table: ' . mysql_error());
   }
 
-  echo "Table user created successfully\n";
+  $tableSnippet = 'CREATE TABLE snippet( '.
+    'id INT NOT NULL AUTO_INCREMENT, '.
+    'snippet  VARCHAR(10000), '.
+    'userId   INT NOT NULL, '.
+    'FOREIGN KEY fkUser(userId) '.
+    'REFERENCES user(id) '.
+    'ON UPDATE CASCADE '.
+    'ON DELETE RESTRICT, '.
+    'primary key ( id ))';
+  mysql_select_db('test_db');
+  $retval = mysql_query( $tableSnippet, $conn );
+
+  if(! $retval ) {
+    die('Could not create table: ' . mysql_error());
+  }
+
+  echo "Tables user and snippet created successfully\n";
   createUser("marco", "123");
   createUser("jaro", "123");
   createUser("marti", "123");
