@@ -16,9 +16,11 @@
         }
         die();
     } elseif (isset($_POST['username']) && isset($_POST['pw'])) {
-        if (validCredentials($_POST['username'], $_POST['pw'])[0]) {
+        $valid = validCredentials($_POST['username'], $_POST['pw']);
+        if ($valid[0]) {
             setcookie("user", $_POST['username'], time() + (86400 * 30), '/');
             setcookie("pw", $_POST['pw'], time() + (86400 * 30), '/');
+            setcookie("id", $valid[1], time() + (86400 * 30), '/');
             header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
         } else {
             echo 'Invalid username or password';
