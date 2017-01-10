@@ -14,7 +14,7 @@ error_reporting(E_ALL);
     include 'db.php';
     include 'src/view/header.php';
     // check if the user is logged in
-    if ( isset($_GET['username']) && isset($_GET['pw']) && loggedIn($_GET['username'], $_GET['pw'])) {
+    if (isset($_GET['username']) && isset($_GET['pw']) && loggedIn($_GET['username'], $_GET['pw'])) {
        echo 'hello';
     } else {
        include 'src/view/publicUsersTable.php';

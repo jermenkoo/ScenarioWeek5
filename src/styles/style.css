@@ -37,4 +37,5 @@ input[type=submit] {
 
 .nav-button {
     cursor: pointer;
+    margin: 10px;
 }
