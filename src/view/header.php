@@ -3,6 +3,9 @@
     if (isset($_COOKIE['user']) && isset($_COOKIE['pw']) && validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
         ?>
 
+        <?php
+          echo "<a href='/src/view/account/editProfile.php'>";
+        ?>
         <div class="user">
         <?php
             $user = $_COOKIE['user'];
@@ -13,6 +16,7 @@
             echo $colouredUser;
         ?>
         </div>
+        </a>
 
         <div class='nav-buttons'>
             <a href='/'><span class='user-button'>Home</span></a>
