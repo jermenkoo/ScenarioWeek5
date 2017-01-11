@@ -21,9 +21,9 @@
                 document.getElementById("logout").addEventListener("click", logOut);
 
                 function logOut() {
-                    delete_cookie('user');
-                    delete_cookie('pw');
-                    delete_cookie('id');
+                    console.log('Log out');
+                    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+
                     location.reload();
                 }
 
