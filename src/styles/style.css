@@ -18,6 +18,18 @@ input[type=submit] {
     cursor: pointer;
 }
 
+.title {
+  font-size: 20px;
+  margin: 10px;
+}
+
+.user-label {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-right: 10px;
+}
+
 .nav {
     height: 50px;
     width: 100%;
