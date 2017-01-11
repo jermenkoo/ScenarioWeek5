@@ -9,7 +9,7 @@
     mysql_select_db($db);
     $retval = mysql_query( $sql, $conn );
     if (mysql_num_rows($retval) == 1) {
-      return [true, mysql_result($retval, 0), mysql_result($retval, 1)];
+      return [true, mysql_result($retval, 0, 'id'), mysql_result($retval, 0, 'isAdmin')];
     } else { return [false, -1, -1]; }
   }
   function createUser($username, $password){

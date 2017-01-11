@@ -26,6 +26,7 @@
             setcookie("pw", $_POST['pw'], time() + (86400 * 30), '/');
             setcookie("id", $valid[1], time() + (86400 * 30), '/');
             setcookie("isAdmin", $valid[2], time() + (86400 * 30), '/');
+            echo "isadmin" . $valid[2];
             header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
         } else {
             echo '<center>';
