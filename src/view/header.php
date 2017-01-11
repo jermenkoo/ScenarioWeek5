@@ -3,12 +3,16 @@
     if (isset($_COOKIE['user']) && isset($_COOKIE['pw']) && validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
         ?>
 
+        <div class="user">
         <?php
             $user = $_COOKIE['user'];
             $colour = getColour($_COOKIE['id']) ? getColour($_COOKIE['id']) : "black";
             $colouredUser = sprintf("<span style='color: %s; margin-left: 10px;'>%s</span>", $colour, $user);
+            $iconUrl = getIcon($_COOKIE['id']);
+            echo "<img class='user-image' src='" . $iconUrl . "' />";
             echo $colouredUser;
         ?>
+        </div>
 
         <div class='nav-buttons'>
             <a href='/'><span class='user-button'>Home</span></a>

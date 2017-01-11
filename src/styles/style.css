@@ -33,7 +33,7 @@ input[type=submit] {
 .nav {
     height: 50px;
     width: 100%;
-    background-color: red;
+    background-color: limegreen;
     display: flex;
    -webkit-flex-direction: row;
    flex-direction: row;
@@ -79,6 +79,12 @@ input[type=submit] {
   flex-direction: row;
 }
 
+.user {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
 .user-container {
   height: 70px;
   padding: 20px;
@@ -91,4 +97,10 @@ input[type=submit] {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;;
+}
+
+.user-image {
+  width: 30px;
+  margin: 5px;
+  border-radius: 15px;
 }
