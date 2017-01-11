@@ -4,6 +4,8 @@ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
+//mkdir()
+
 // Check if file already exists
 if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
