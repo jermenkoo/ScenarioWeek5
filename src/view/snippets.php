@@ -11,8 +11,23 @@
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
 
+        // Other users snippets
+        if (isset($_GET['userId'])) {
+            ?>
+            <div class="snippet-list">
+              <div class="title">All snippets for user <?php echo $_GET['userId']; ?>:</div>
+            <?php
+            $snippets = getAllSnippets($_GET['userId']);
+            foreach ($snippets as $snippet) { ?>
+               <div class="snippet-container"><?php echo $snippet['snippet'] ?>
+              </div>
+            <?php
+            }
+            echo "</div>";
+
+        }
         // Not logged in
-        if (!isset($_COOKIE['user']) or !isset($_COOKIE['pw']) or !validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
+        elseif (!isset($_COOKIE['user']) or !isset($_COOKIE['pw']) or !validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
             header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
             die();
         } else {
