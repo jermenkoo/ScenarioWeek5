@@ -3,11 +3,6 @@ body {
     font-family: Verdana;
 }
 
-form {
-    margin-top: 40px;
-    margin-left: 40px;
-}
-
 .snippet-form {
   margin: 0px;
 }
@@ -29,6 +24,12 @@ input[type=submit] {
 textarea {
   width: 50%;
   height: 130px;
+}
+
+.account-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -117,4 +118,9 @@ textarea {
   width: 30px;
   margin: 5px;
   border-radius: 15px;
+}
+
+.file-upload {
+  margin-top: 30px;
+  margin-left: 30px;
 }

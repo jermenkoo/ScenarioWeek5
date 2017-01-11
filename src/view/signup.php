@@ -11,9 +11,7 @@
     if (isset($_GET['username']) && isset($_GET['pw']) && validCredentials($_GET['username'], $_GET['pw'])[0]) {
        echo 'hello';
     } else {
-        echo '<center>';
         include './forms/signupForm.php';
-        echo '</center>';
     }
     ?>
     </body>

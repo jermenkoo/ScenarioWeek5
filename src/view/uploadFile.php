@@ -18,7 +18,7 @@
         }
         ?>
 
-        <form action="../logic/upload.php" method="post" enctype="multipart/form-data">
+        <form class="file-upload" action="../logic/upload.php" method="post" enctype="multipart/form-data">
             Select file to upload:
             <input type="file" name="fileToUpload" id="fileToUpload">
             <input type="submit" value="Upload file" name="submit">
