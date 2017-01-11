@@ -69,6 +69,29 @@
     $result = mysql_result($retval, 0);
     return $result;
   }
+
+  function getUserData($userID) {
+    global $db;
+    global $conn;
+    $sql = sprintf("SELECT * FROM user WHERE id=%s;", $userID);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn);
+    if (!$retval) {
+        die('Could not get user: ' . mysql_error());
+    }
+    $res =  mysql_fetch_array($retval, MYSQL_BOTH);
+    return $res;
+  }
+  function updateUserData($userID, $username, $password, $icon, $colour, $snippet, $homepage, $admin) {
+    global $conn;
+    global $db;
+    $sql = sprintf("UPDATE user SET username='%s', password='%s', colour='%s',icon ='%s', homepage='%s', isAdmin='%s', privSnippet='%s'   WHERE id=%s;" , $username, $password, $colour, $icon, $homepage, $admin, $snippet, $userID);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn );
+    if (!$retval) {
+      die('Could not update user: ' . mysql_error());
+    }
+  }
   function getAllUsers() {
     global $db;
     global $conn;
@@ -135,7 +158,7 @@
     global $conn;
     global $db;
 
-    $sql = sprintf("UPDATE  `user` SET icon='%s' WHERE id=%s;", $icon, $id);
+    $sql = sprintf("UPDATE `user` SET icon='%s' WHERE id=%s;", $icon, $id);
     mysql_select_db($db);
     $retval = mysql_query( $sql, $conn );
     if (!$retval) {
