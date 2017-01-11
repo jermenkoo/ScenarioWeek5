@@ -29,7 +29,7 @@
           ?>
               <div class="user-container">
                 <?php echo $colouredUser ?>
-                <div><a href="/src/account/editProfile.php?userId=<?php echo $user['id']; ?>">Profile</a></div>
+                <div><a href="/src/view/account/editProfile.php?userID=<?php echo $user['id']; ?>">Profile</a></div>
               </div>
             <?php
           }
