@@ -15,7 +15,7 @@
         if (isset($_GET['userId'])) {
             ?>
             <div class="snippet-list">
-              <div class="title">All snippets for user <?php echo $_GET['userId']; ?>:</div>
+              <div class="title">All snippets for user <?php echo $_GET['userName']; ?>:</div>
             <?php
             $snippets = getAllSnippets($_GET['userId']);
             foreach ($snippets as $snippet) { ?>
