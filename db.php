@@ -191,5 +191,27 @@
     $result = mysql_result($retval, 0);
     return $result;
   }
+  function promoteUser($id){
+    global $conn;
+    global $db;
+
+    $sql = sprintf("UPDATE  `user` SET isAdmin='1' WHERE id=%s;", $id);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn );
+    if (!$retval) {
+      die('Could not update icon: ' . mysql_error());
+    }
+  }
+  function unpromoteUser($id){
+    global $conn;
+    global $db;
+
+    $sql = sprintf("UPDATE  `user` SET isAdmin='0' WHERE id=%s;", $id);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn );
+    if (!$retval) {
+      die('Could not update icon: ' . mysql_error());
+    }
+  }
 
 ?>
