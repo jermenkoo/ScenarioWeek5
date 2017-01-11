@@ -3,19 +3,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-function getPost($str) {
-    if (isset($_POST[$str])) {
-        return $_POST[$str];
-    } else { return "" ; }
-}
-
-if(isset($_GET['update']) && $_GET['update']){
-    $admin = getPost('admin') == "on" ? 1 : 0;
-    updateUserData(getPost('userID'), getPost('username'), getPost('pw'), getPost('iconURL'), getPost('profileColour'), getPost('snippet'), getPost('homepage'), $admin);
-    header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/src/view/admin.php');
-    die();
-}
-
 if (isset($_COOKIE['user']) && isset($_COOKIE['pw']) && validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
 
     if (isset($_COOKIE['isAdmin']) && $_COOKIE['isAdmin']){
@@ -31,8 +18,7 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pw']) && validCredentials($_COOKI
     $data = array();
     $data = getUserData($userID);
 ?>
-<form action="<?php echo basename($_SERVER['PHP_SELF']); ?>?update=1" method="POST">
-<input type="hidden" name="userID" value="<?php echo $userID; ?>">
+<form action="/src/logic/updateUser.php" method="GET">
 Username: <input type="textfield" name="username" value="<?php echo $data['username']; ?>"></br>
 Password: <input type="textfield" name="pw" value="<?php echo $data['password']; ?>"></br>
 Icon URL <input type="textfield" name="iconURL" value="<?php echo $data['icon']; ?>"></br>
