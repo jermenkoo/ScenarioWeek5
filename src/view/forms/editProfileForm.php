@@ -12,7 +12,7 @@ function getPost($str) {
 if(isset($_GET['update']) && $_GET['update']){
     $admin = getPost('admin') == "on" ? 1 : 0;
     updateUserData(getPost('userID'), getPost('username'), getPost('pw'), getPost('iconURL'), getPost('profileColour'), getPost('snippet'), getPost('homepage'), $admin);
-    header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/src/view/admin.php');
+    header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/');
     die();
 }
 
