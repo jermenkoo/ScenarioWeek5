@@ -9,7 +9,8 @@ $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
 // Check if file already exists
 if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
+    header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] .
+    '/src/view/uploadFile.php?error=' . "Sorry, file already exists.");
     $uploadOk = 0;
 }
 
@@ -19,9 +20,12 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "Done! The file is available here: " . "/" . $_COOKIE['id'] . "/" . basename($_FILES["fileToUpload"]["name"]);;
+        $url = $_COOKIE['id'] . "/" . basename($_FILES["fileToUpload"]["name"]);
+        header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] .
+        '/src/view/uploadFile.php?url=' . $url);
     } else {
-        echo "Sorry, there was an error uploading your file.";
+      header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] .
+      '/src/view/uploadFile.php?error=' . "Sorry, there was an error uploading your file.");
     }
 }
 ?>
