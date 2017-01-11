@@ -5,12 +5,12 @@
   function validCredentials($username, $password){
     global $conn;
     global $db;
-    $sql = sprintf("SELECT id FROM `user` WHERE username='%s' and password='%s'", $username, $password);
+    $sql = sprintf("SELECT id, isAdmin FROM `user` WHERE username='%s' and password='%s'", $username, $password);
     mysql_select_db($db);
     $retval = mysql_query( $sql, $conn );
     if (mysql_num_rows($retval) == 1) {
-      return [true, mysql_result($retval, 0)];
-    } else { return [false, -1]; }
+      return [true, mysql_result($retval, 0), mysql_result($retval, 1)];
+    } else { return [false, -1, -1]; }
   }
   function createUser($username, $password){
     global $conn;
@@ -179,4 +179,17 @@
     }
     return $arr;
   }
+  function isAdmin($id){
+    global $conn;
+    global $db;
+    $sql = sprintf("SELECT isAdmin FROM user WHERE id=%s;", $id);
+    mysql_select_db($db);
+    $retval = mysql_query( $sql, $conn );
+    if (!$retval) {
+      die('Could not get icon: ' . mysql_error());
+    }
+    $result = mysql_result($retval, 0);
+    return $result;
+  }
+
 ?>
