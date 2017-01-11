@@ -12,6 +12,10 @@ form {
   margin: 0px;
 }
 
+input {
+  margin: 4px 2px;
+}
+
 input[type=submit] {
     display: block;
     background-color: #4CAF50;
@@ -19,7 +23,6 @@ input[type=submit] {
     color: white;
     padding: 8px 16px;
     text-decoration: none;
-    margin: 4px 2px;
     cursor: pointer;
 }
 
