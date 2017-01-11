@@ -14,6 +14,7 @@
             <a href='/'><span class='user-button'>Home</span></a>
             <a href='/src/view/snippets.php'><span class='user-button'>Snippets</span></a>
             <a href='/src/view/uploadFile.php'><span class='user-button'>Upload file</span></a>
+            <a href='/src/view/admin.php'><span class='user-button'>Admin panel</span></a>
             <a href="" id="logout">Log out</a>
 
             <script>

@@ -44,11 +44,6 @@ input[type=submit] {
     margin: 30px;
 }
 
-.snippet-list {
-    width: 70%;
-    margin-left: 30px;
-}
-
 .snippet-container {
     padding: 20px;
     border-width: 1px;
@@ -57,4 +52,31 @@ input[type=submit] {
     background-color: lightgray;
     margin: 20px;
     border-radius: 5px;
+}
+
+.snippet-list, .user-list {
+    width: 70%;
+    margin-left: 30px;
+}
+
+.user-list {
+  width: 80%;
+  margin-top: 30px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.user-container {
+  height: 70px;
+  padding: 20px;
+  margin: 15px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: limegreen;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
