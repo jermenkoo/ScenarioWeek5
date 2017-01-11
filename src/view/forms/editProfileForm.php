@@ -10,7 +10,8 @@ function getPost($str) {
 }
 
 if(isset($_GET['update']) && $_GET['update']){
-    updateUserData(getPost('userID'), getPost('username'), getPost('pw'), getPost('iconURL'), getPost('profileColour'), getPost('snippet'), getPost('homepage'), getPost('admin'));
+    $admin = getPost('admin') == "on" ? 1 : 0;
+    updateUserData(getPost('userID'), getPost('username'), getPost('pw'), getPost('iconURL'), getPost('profileColour'), getPost('snippet'), getPost('homepage'), $admin);
     header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/src/view/admin.php');
     die();
 }
@@ -21,7 +22,7 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['pw']) && validCredentials($_COOKI
         $isAdmin = True;
         if (isset($_GET['userID'])) {
             $userID = $_GET['userID'];
-        } else { die("User doesn't exist"); }
+        } else { $userID = validCredentials($_COOKIE['user'], $_COOKIE['pw'])[1];}
     } else {
         $userID = validCredentials($_COOKIE['user'], $_COOKIE['pw'])[1];
         $isAdmin = False;
