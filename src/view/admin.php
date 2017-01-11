@@ -26,7 +26,6 @@
               $username = $user['username'];
               $colour = getColour($user['id']) ? getColour($user['id']) : "black";
               $colouredUser = sprintf("<span style='color: %s'>%s</span>", $colour, $username);
-
           ?>
               <div class="user-container">
                 <?php echo $colouredUser ?>
