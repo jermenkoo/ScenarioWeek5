@@ -37,7 +37,7 @@ Username: <input type="textfield" name="username" value="<?php echo $data['usern
 Password: <input type="textfield" name="pw" value="<?php echo $data['password']; ?>"></br>
 Icon URL <input type="textfield" name="iconURL" value="<?php echo $data['icon']; ?>"></br>
 Profile Colour <input type="textfield" name="profileColour" value="<?php echo $data['colour']; ?>"></br>
-Private Snipped <input type="textfield" name="snippet" value="<?php echo $data['privSnippet']; ?>"></br>
+Private Snippet <input type="textfield" name="snippet" value="<?php echo $data['privSnippet']; ?>"></br>
 <?php if ($isAdmin) { ?>
 Admin <input type="checkbox" name="admin" <?php if ($data['isAdmin']) { echo "checked"; } ?> ></br>
 <?php } else { ?>
@@ -46,7 +46,7 @@ Admin <input type="checkbox" name="admin" <?php if ($data['isAdmin']) { echo "ch
 
 <?php } ?>
 Homepage <input type="textfield" name="homepage" value="<?php echo $data['homepage']; ?>"></br>
-<input type="submit">
+<input value="Save" type="submit">
 </form>
 
 <?php
