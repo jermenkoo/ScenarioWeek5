@@ -41,7 +41,7 @@
             <div>
                 <div class="snippet-form">
                     <textarea name="snippet" form="snippet">Enter your snippet</textarea>
-                    <form action="<?php echo basename($_SERVER['PHP_SELF']); ?>" id="snippet" method="post">
+                    <form class="snippet-form" action="<?php echo basename($_SERVER['PHP_SELF']); ?>" id="snippet" method="post">
                         <input value="Create" type="submit">
                     </form>
                 </div>

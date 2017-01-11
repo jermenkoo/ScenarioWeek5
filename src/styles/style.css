@@ -8,6 +8,10 @@ form {
     margin-left: 40px;
 }
 
+.snippet-form {
+  margin: 0px;
+}
+
 input[type=submit] {
     display: block;
     background-color: #4CAF50;
@@ -17,6 +21,11 @@ input[type=submit] {
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+textarea {
+  width: 50%;
+  height: 130px;
 }
 
 .title {
