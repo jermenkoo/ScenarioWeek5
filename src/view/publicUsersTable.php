@@ -15,6 +15,9 @@
             echo "<img class='user-image' src='" . $iconUrl . "' />";
             echo '<span class="user-label">' . $colouredUser . '</span>'
             . '<a href="/src/view/snippets.php?userId=' . $user['id'] . "&userName=" . $user['username'] . '"><span>All snippets</span></a>';
+            if ($user['homepage'] && isset($_COOKIE['user']) && validCredentials($_COOKIE['user'], $_COOKIE['pw'])) {
+              echo '&nbsp;<a href="' . $user['homepage'] .  '">Homepage</a>';
+            }
             echo '</div>';
             echo '<div>' . $snippet . '</div>';
             echo '</div>';
