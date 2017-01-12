@@ -41,7 +41,7 @@
                 $_POST = array();
             }
             else if (isset($_GET['delete'])){
-                deleteSnippet($_GET['delete']);
+                deleteSnippet($_GET['delete'], $_COOKIE['userId']);
             }  ?>
             <div>
                 <div class="snippet-form">

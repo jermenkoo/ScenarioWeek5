@@ -190,15 +190,15 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
       return $row[0];
     }
   }
-  function deleteSnippet($snippetId){
+  function deleteSnippet($snippetId, $userId){
       global $conn;
       // global $db;
       // $sql = sprintf("DELETE FROM snippet WHERE id=%s", $snippetId);
       // mysql_select_db($db);
       // $retval = mysql_query( $sql, $conn);
 
-      $retval = $conn->prepare("DELETE FROM snippet WHERE id = :id;");
-      $retval->execute(array('id' => $snippetId));
+      $retval = $conn->prepare("DELETE FROM snippet WHERE id = :id AND userId = :userId;");
+      $retval->execute(array('id' => $snippetId, 'userId' => $userId));
 
       if (!$retval) {
           die('Invalid query: ' . mysql_error());
