@@ -14,7 +14,6 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     //$sql = sprintf("SELECT id, isAdmin FROM `user` WHERE username='%s' and password='%s'", $username, $password);
     // mysql_select_db($db);
     //$retval = mysql_query( $sql, $conn );
-
     $retval = $conn->prepare("SELECT id, isAdmin FROM user WHERE username = :name and password = :password;");
     $retval->execute(array('name' => $username, 'password' => md5($password)));
     foreach ($retval as $row) {
