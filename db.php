@@ -15,8 +15,12 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     // mysql_select_db($db);
     //$retval = mysql_query( $sql, $conn );
 
+    $hashed_password = md5($password);
+
+    var_dump($hashed_password);
+
     $retval = $conn->prepare("SELECT id, isAdmin FROM user WHERE username = :name and password = :password;");
-    $retval->execute(array('name' => $username, 'password' => md5($password)));
+    $retval->execute(array('name' => $username, 'password' => $hashed_password));
 
     foreach ($retval as $row) {
       return [true, $row['id'], $row['isAdmin']];
