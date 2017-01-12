@@ -17,7 +17,6 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
     $retval = $conn->prepare("SELECT id, isAdmin FROM user WHERE username = :name and password = :password;");
     $retval->execute(array('name' => $username, 'password' => md5($password)));
-
     foreach ($retval as $row) {
       return [true, $row['id'], $row['isAdmin']];
     }
