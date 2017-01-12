@@ -14,6 +14,9 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
     if (isset($_POST['username']) && isset($_POST['password'])){
         $valid = validCredentials($_POST['username'], $_POST['password']);
+        echo '<pre>';
+        var_dump($valid);
+        echo '</pre>';
         $isAdmin = (bool) $valid[2];
         $userID  = $valid[1];
         $valid   = $valid[0];
@@ -24,11 +27,9 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
             $_SESSION['isAdmin'] = $isAdmin;
             header('Location: ' . $URL . '/index.php');
         }
-    } else {
-        include '../forms/loginForm.php';
     }
-
-
+    include '../forms/loginForm.php';
+    
     echo '<pre>';
     var_dump($_SESSION);
     echo '</pre>';
