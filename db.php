@@ -147,6 +147,18 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
     return False;
   }
+  function changePasswordAdmin($userId, $newPW) {
+    global $conn;
+
+    $retval = $conn->prepare("UPDATE user SET password : newPw  WHERE id = :id;");
+    $retval->execute(array('id' => $userId, 'newPw' => $newPw));
+
+    foreach ($retval as $row) {
+      return True;
+    }
+
+    return False;
+  }
   function getUserName($userID){
     global $conn;
     $retval = $conn->prepare("SELECT username FROM user WHERE id=:userID;");
