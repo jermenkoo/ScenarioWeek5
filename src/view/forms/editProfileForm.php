@@ -30,6 +30,7 @@ Private Snippet <input type="textfield" name="snippet" value="<?php echo $data['
 Homepage <input type="textfield" name="homepage" value="<?php echo $data['homepage']; ?>"></br>
 <input value="Save" type="submit">
 </form>
+<a href="<?php echo $URL; ?>/src/view/account/changePW.php?userID=<?php echo $data['id']; ?>"> Change Password </a>
 
 <?php
     } else { echo 'please log in'; }
