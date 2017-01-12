@@ -1,6 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="../styles/style.css">
+        <script type="text/javascript" src="/src/dompurify/purify.js"></script>
     </head>
     <body>
       <?php
@@ -17,9 +18,9 @@
         }
         ?>
 
-        <form class="file-upload" 
-              action="<?php echo $URL; ?>/src/logic/upload.php" 
-              method="POST" 
+        <form class="file-upload"
+              action="<?php echo $URL; ?>/src/logic/upload.php"
+              method="POST"
               enctype="multipart/form-data">
         <?php
             if (isset($_GET['url'])) {
