@@ -10,6 +10,7 @@
       $admin = (SessionManager::isAdmin() && getData("admin"))? 1 : 0;
       $updateID = SessionManager::isAdmin() ? getData('userID') : $_SESSION['userID'];
       updateUserData($updateID, getData('username'), getData('iconURL'), getData('profileColour'), getData('snippet'), getData('homepage'), $admin);;
+
   }
 
   header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/');
