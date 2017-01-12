@@ -2,16 +2,27 @@
 include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
 
 $target_dir = $_SERVER['DOCUMENT_ROOT'] . '/userID_' . $_SESSION['userID'] . '/';
+
 if (!file_exists($target_dir)) {
   mkdir($target_dir);
 }
+
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
-$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
 // Check if file already exists
 if (file_exists($target_file)) {
     header('Location: ' . $URL . '/src/view/uploadFile.php?error=' . "Sorry, file already exists.");
+    $uploadOk = 0;
+}
+
+if ($_FILES["fileToUpload"]["type"] != "image/jpeg") {
+    header('Location: ' . $URL . '/src/view/uploadFile.php?error=' . "File is not an image!");
+    $uploadOk = 0;
+}
+
+if ( ($_FILES["fileToUpload"]["size"] > 350000) || ($_FILES["fileToUpload"]["size"] < 10000) ) {
+    header('Location: ' . $URL . '/src/view/uploadFile.php?error=' . "File is too small or too large!");
     $uploadOk = 0;
 }
 
