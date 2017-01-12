@@ -10,23 +10,23 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
   function validCredentials($username, $password){
     global $conn;
-    // global $db;
-    //$sql = sprintf("SELECT id, isAdmin FROM `user` WHERE username='%s' and password='%s'", $username, $password);
-    // mysql_select_db($db);
-    //$retval = mysql_query( $sql, $conn );
-    $retval = $conn->prepare("SELECT id, isAdmin FROM user WHERE username = :name and password = :password;");
-    $retval->execute(array('name' => $username, 'password' => md5($password)));
-    foreach ($retval as $row) {
-      return [true, $row['id'], $row['isAdmin']];
-    }
 
-    return [false, -1, -1];
+    $retval = $conn->prepare("SELECT password, id, isAdmin FROM user WHERE username = :name;");
+    $retval->execute(array('name' => $username));
+
+    foreach ($retval as $row) {
+      if (password_verify($password, $row['password'])) {
+        return [true, $row['id'], $row['isAdmin']];
+      } else {
+        return [false, -1, -1];
+      }
+    }
   }
   function createUser($username, $password){
     global $conn;
 
     $retval = $conn->prepare("INSERT INTO user (username, password, isAdmin) VALUES (:username, :password, 0);");
-    $retval->execute(array('username' => $username, 'password' => md5($password)));
+    $retval->execute(array('username' => $username, 'password' => password_hash($password, PASSWORD_DEFAULT)));
   }
   function setColour($id, $color){
     global $conn;
@@ -39,10 +39,6 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
     $retval = $conn->prepare("SELECT colour FROM user WHERE id = :id;");
     $retval->execute(array('id' => $id));
-
-    if (!$retval) {
-      die('Could not get colour: ' . mysql_error());
-    }
 
     foreach ($retval as $row) {
       return $row[0];

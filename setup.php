@@ -26,7 +26,7 @@
     $conn->exec("CREATE TABLE user(
       id INT NOT NULL AUTO_INCREMENT,
       username VARCHAR(20) NOT NULL UNIQUE,
-      password  VARCHAR(32) NOT NULL,
+      password  VARCHAR(300) NOT NULL,
       colour   VARCHAR(100),
       icon    VARCHAR(10000) DEFAULT 'https://openclipart.org/download/247319/abstract-user-flat-3.svg',
       homepage   VARCHAR(100),
