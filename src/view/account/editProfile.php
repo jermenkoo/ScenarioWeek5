@@ -6,7 +6,7 @@
     <body>
 
     <?php
-  include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
+    include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
 
     // User already logged in
     if (SessionManager::isLoggedIn()) {

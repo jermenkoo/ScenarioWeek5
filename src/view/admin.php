@@ -4,7 +4,6 @@
     </head>
     <body>
       <?php
-        include '../../db.php';
         include './header.php';
 
         ini_set('display_errors', 1);
