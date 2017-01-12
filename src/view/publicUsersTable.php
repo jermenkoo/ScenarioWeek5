@@ -21,21 +21,19 @@
 
             ?>
 
-            <div>
-              <div class="snip-text"></div>
             </div>
 
-            <script type="text/javascript">
-              var snip = "<?php echo $snippet; ?>";
-              var user = "<?php echo $colouredUser; ?>";
-              console.log(DOMPurify.sanitize(user));
-              console.log(DOMPurify.sanitize(snip));
-              document.querySelector('.snip-text').innerHTML = DOMPurify.sanitize(snip);
-              document.querySelector('.user-label').innerHTML = DOMPurify.sanitize(user);
-            </script>
+            <div>
+              <div class="snip-text">
+                <script type="text/javascript">
+                  var snip = "<?php echo $snippet; ?>";
+                  var user = "<?php echo $colouredUser; ?>";
+                  document.write(DOMPurify.sanitize(snip));
+                  document.querySelector('.user-label').innerHTML = DOMPurify.sanitize(user);
+                </script>
+              </div>
+            </div>
           </div>
-        </div>
-
           <?php
         }
     ?>
