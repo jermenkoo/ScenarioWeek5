@@ -9,7 +9,7 @@ class SessionManager {
    }
 
    static function isAdmin(){
-       if ($this->isLoggedIn()){
+       if (SessionManager::isLoggedIn()){
            return isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'];
        }
    }

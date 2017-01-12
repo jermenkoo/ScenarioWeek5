@@ -127,7 +127,6 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     // $sql = sprintf("UPDATE user SET username='%s', password='%s', colour='%s',icon ='%s', homepage='%s', isAdmin='%s', privSnippet='%s'   WHERE id=%s;" , $username, $password, $colour, $icon, $homepage, $admin, $snippet, $userID);
     // mysql_select_db($db);
     // $retval = mysql_query( $sql, $conn );
-
     $retval = $conn->prepare("UPDATE user SET username = :username, colour = :colour, icon = :icon, homepage = :homepage, isAdmin = :admin, privSnippet = :privSnip   WHERE id = :id;");
     $retval->execute(array('id' => $userId, 'username' => $username, 'colour' => $colour, 'icon' => $icon, 'homepage' => $homepage, 'admin' => $admin, 'privSnip' => $snippet));
 
@@ -140,6 +139,18 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
     $retval = $conn->prepare("UPDATE user SET password : newPw  WHERE id = :id and password = :oldPw;");
     $retval->execute(array('id' => $userId, 'newPw' => $newPw, 'oldPw' => $oldPw));
+
+    foreach ($retval as $row) {
+      return True;
+    }
+
+    return False;
+  }
+  function changePasswordAdmin($userId, $newPW) {
+    global $conn;
+
+    $retval = $conn->prepare("UPDATE user SET password : newPw  WHERE id = :id;");
+    $retval->execute(array('id' => $userId, 'newPw' => $newPw));
 
     foreach ($retval as $row) {
       return True;

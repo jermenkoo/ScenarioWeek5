@@ -1,15 +1,16 @@
 <?php
-  include '../../db.php';
-
+  include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
   function getData($str) {
-      if (isset($_GET[$str])) {
-          return $_GET[$str];
+      if (isset($_POST[$str])) {
+          return $_POST[$str];
       } else { return "" ; }
   }
 
-  if(isset($_GET['username']) && isset($_COOKIE['id']) && validCredentials($_COOKIE['user'], $_COOKIE['pw'])){
-      $admin = getData('admin') == "on" ? 1 : 0;
-      updateUserData($_COOKIE['id'], getData('username'), getData('iconURL'), getData('profileColour'), getData('snippet'), getData('homepage'), $admin);;
+  if(SessionManager::isLoggedIn()){
+      $admin = (SessionManager::isAdmin() && getData("admin"))? 1 : 0;
+      $updateID = SessionManager::isAdmin() ? getData('userID') : $_SESSION['userID'];
+      updateUserData($updateID, getData('username'), getData('iconURL'), getData('profileColour'), getData('snippet'), getData('homepage'), $admin);;
+
   }
 
   header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/');
