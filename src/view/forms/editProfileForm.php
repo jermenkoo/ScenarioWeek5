@@ -17,11 +17,8 @@ Profile Colour <input type="textfield" name="profileColour" value="<?php echo $d
 Private Snippet <input type="textfield" name="snippet" value="<?php echo $data['privSnippet']; ?>"></br>
 <?php if ($isAdmin) { ?>
 Admin <input type="checkbox" name="admin" <?php if ($data['isAdmin']) { echo "checked"; } ?> ></br>
-<?php } else { ?>
-
-<input type="hidden" name="admin" value="<?php echo $data['isAdmin']; ?>">
-
 <?php } ?>
+
 Homepage <input type="textfield" name="homepage" value="<?php echo $data['homepage']; ?>"></br>
 <input value="Save" type="submit">
 </form>
