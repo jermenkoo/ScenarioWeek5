@@ -41,7 +41,7 @@ class SessionManager {
             } elseif(rand(1, 100) <= 5){
                 self::regenerateSession();
             }
-        } else { 
+        } else {
             $_SESSION = array();
             session_destroy();
             session_start();
@@ -85,7 +85,7 @@ class SessionManager {
         unset($_SESSION['OBSOLETE']);
         unset($_SESSION['EXPIRES']);
     }
-    
+
     static protected function validateSession(){
         if( isset($_SESSION['OBSOLETE']) && !isset($_SESSION['EXPIRES']) )
             return false;
