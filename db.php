@@ -110,13 +110,13 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     // $retval = $conn->prepare("SELECT privSnippet FROM user WHERE id = :id;");
     // $retval->execute(array('id' => $id));
 
-    $retval = $conn->prepare("SELECT userId, isAdmin, username FROM user WHERE id = :id;");
+    $retval = $conn->prepare("SELECT id, username, colour, icon, privSnippet, isAdmin, homepage FROM user WHERE id = :id;");
     $retval->execute(array('id' => $userId));
 
     if (!$retval) {
         die('Could not get user: ' . mysql_error());
     }
-
+    $arr = array();
     foreach ($retval as $row) {
       return $row;
     }
