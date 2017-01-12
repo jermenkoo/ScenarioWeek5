@@ -2,6 +2,17 @@
 // tutorial: http://blog.teamtreehouse.com/how-to-create-bulletproof-sessions
 
 class SessionManager {
+   static function isLoggedIn(){
+       $has_session = session_status() == PHP_SESSION_ACTIVE;
+       if (!$has_session) { return False; }
+       return isset($_SESSION['userID']);
+   }
+
+   static function isAdmin(){
+       if ($this->isLoggedIn()){
+           return isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'];
+       }
+   }
 
    static function sessionStart($name, $limit = 0, $path = '/', $domain = null, $secure = null){
         // Set the cookie name
@@ -52,7 +63,7 @@ class SessionManager {
 
     static function regenerateSession(){
         // If this session is obsolete it means there already is a new id
-        if(isset($_SESSION['OBSOLETE']) || $_SESSION['OBSOLETE'] == true)
+        if(isset($_SESSION['OBSOLETE']) && $_SESSION['OBSOLETE'] == true)
             return;
 
         // Set current session to expire in 10 seconds
