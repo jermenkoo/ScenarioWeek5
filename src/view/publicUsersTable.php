@@ -18,9 +18,25 @@
             if ($user['homepage'] && isset($_COOKIE['user']) && validCredentials($_COOKIE['user'], $_COOKIE['pw'])) {
               echo '&nbsp;<a href="' . $user['homepage'] .  '">Homepage</a>';
             }
-            echo '</div>';
-            echo '<div>' . $snippet . '</div>';
-            echo '</div>';
+
+            ?>
+
+            <div>
+              <div class="snip-text"></div>
+            </div>
+
+            <script type="text/javascript">
+              var snip = "<?php echo $snippet; ?>";
+              var user = "<?php echo $colouredUser; ?>";
+              console.log(DOMPurify.sanitize(user));
+              console.log(DOMPurify.sanitize(snip));
+              document.querySelector('.snip-text').innerHTML = DOMPurify.sanitize(snip);
+              document.querySelector('.user-label').innerHTML = DOMPurify.sanitize(user);
+            </script>
+          </div>
+        </div>
+
+          <?php
         }
     ?>
 </div>
