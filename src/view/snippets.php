@@ -1,6 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="../styles/style.css">
+        <script type="text/javascript" src="/src/dompurify/purify.js"></script>
     </head>
     <body>
       <?php
@@ -19,7 +20,11 @@
             <?php
             $snippets = getAllSnippets($_GET['userId']);
             foreach ($snippets as $snippet) { ?>
-               <div class="snippet-container"><?php echo $snippet['snippet'] ?>
+               <div class="snippet-container">
+                   <script type="text/javascript">
+                     var snip = "<?php echo $snippet['snippet'] ?>";
+                     document.write(DOMPurify.sanitize(snip));
+                   </script>
               </div>
             <?php
             }
@@ -51,8 +56,13 @@
             <?php
             $snippets = getAllSnippets($_COOKIE['id']);
             foreach ($snippets as $snippet) { ?>
-               <div class="snippet-container"><?php echo $snippet['snippet'] ?>
-               <a href="<?php echo basename($_SERVER['PHP_SELF']); ?>?delete=<?php echo $snippet['id']; ?>">Delete</a></div>
+              <div class="snippet-container">
+               <script type="text/javascript">
+                 var snip = "<?php echo $snippet['snippet'] ?>";
+                 document.write(DOMPurify.sanitize(snip));
+               </script>
+               <a href="<?php echo basename($_SERVER['PHP_SELF']); ?>?delete=<?php echo $snippet['id']; ?>">Delete</a>
+             </div>
             <?php
             }
             echo "</div>";

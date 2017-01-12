@@ -1,6 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="../../styles/style.css">
+        <script type="text/javascript" src="/src/dompurify/purify.js"></script>
     </head>
     <body>
 

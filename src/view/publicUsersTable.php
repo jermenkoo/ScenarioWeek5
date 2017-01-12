@@ -32,12 +32,10 @@
             </div>
 
             <div>
-              <div class="snip-text">
+              <div>
                 <script type="text/javascript">
                   var snip = "<?php echo $snippet; ?>";
-                  var user = "<?php echo $colouredUser; ?>";
                   document.write(DOMPurify.sanitize(snip));
-                  document.querySelector('.user-label').innerHTML = DOMPurify.sanitize(user);
                 </script>
               </div>
             </div>

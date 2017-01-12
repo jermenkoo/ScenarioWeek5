@@ -13,8 +13,12 @@
             $colouredUser = sprintf("<span style='color: %s; margin-left: 10px;'>%s</span>", $colour, $user);
             $iconUrl = getIcon($_COOKIE['id']);
             echo "<img class='user-image' src='" . $iconUrl . "' />";
-            echo $colouredUser;
-        ?>
+
+            ?>
+            <script type="text/javascript">
+              var user = "<?php echo $colouredUser; ?>";
+              document.write(DOMPurify.sanitize(user));
+            </script>
         </div>
         </a>
 
