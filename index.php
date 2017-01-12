@@ -12,17 +12,11 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     <body>
 
     <?php
-    include 'db.php';
-    include 'src/view/header.php';
-    // User is logged in
-    ?>
-
-    <?php
-    if (isset($_COOKIE['user']) && isset($_COOKIE['pw']) && validCredentials($_COOKIE['user'], $_COOKIE['user'])) {
+    include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
+    // check whether the use wants to log out, if yes, destroy session
         include 'src/view/publicUsersTable.php';
-    } else {
-        include 'src/view/publicUsersTable.php';
-    }
-    ?>
-    </body>
+    echo '<pre>';
+var_dump($_SESSION);
+echo '</pre>';
+    ?></body>
 </html>
