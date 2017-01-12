@@ -7,7 +7,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 <html>
     <head>
         <link rel="stylesheet" href="./src/styles/style.css">
-        <script type="text/javascript" src="/src/dompurify/purify.min.js" />
+        <script type="text/javascript" src="/src/dompurify/purify.js" />
     </head>
     <body>
 
