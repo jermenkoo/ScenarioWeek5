@@ -10,7 +10,7 @@
         error_reporting(E_ALL);
 
         // Not logged in
-        if (SessionManager::isAdmin()) {
+        if (!SessionManager::isAdmin()) {
             header('Location: ' . $URL . '/index.php');
             die();
         } else {

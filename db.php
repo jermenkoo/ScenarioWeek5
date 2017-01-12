@@ -67,7 +67,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
   function getUserData($userId) {
     global $conn;
 
-    $retval = $conn->prepare("SELECT userId, isAdmin, username FROM user WHERE id = :id;");
+    $retval = $conn->prepare("SELECT id, username, colour, icon, privSnippet, isAdmin, homepage FROM user WHERE id = :id;");
     $retval->execute(array('id' => $userId));
 
     foreach ($retval as $row) {
@@ -76,6 +76,11 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
   }
   function updateUserData($userId, $username, $icon, $colour, $snippet, $homepage, $admin, $canPost) {
     global $conn;
+
+    // global $db;
+    // $sql = sprintf("UPDATE user SET username='%s', password='%s', colour='%s',icon ='%s', homepage='%s', isAdmin='%s', privSnippet='%s'   WHERE id=%s;" , $username, $password, $colour, $icon, $homepage, $admin, $snippet, $userID);
+    // mysql_select_db($db);
+    // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("UPDATE user SET username = :username, colour = :colour, icon = :icon, homepage = :homepage, isAdmin = :admin, privSnippet = :privSnip, canPost = :canPost   WHERE id = :id;");
     $retval->execute(array('id' => $userId, 'username' => $username, 'colour' => $colour, 'icon' => $icon, 'homepage' => $homepage, 'admin' => $admin, 'privSnip' => $snippet, 'canPost' => $canPost));
