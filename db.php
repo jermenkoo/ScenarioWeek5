@@ -147,6 +147,17 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
     return False;
   }
+  function getUserName($userID){
+    global $conn;
+    $retval = $conn->prepare("SELECT username FROM user WHERE id=:userID;");
+    $retval->execute(array('userID' => $userID));
+    if (!$retval){
+      die('Could not get username! ' . mysql_error());
+    }
+    foreach ($retval as $row) {
+      return $row[0];
+    }
+  }
   function getAllUsers() {
     global $conn;
     // global $db;

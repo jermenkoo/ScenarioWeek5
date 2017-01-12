@@ -4,16 +4,14 @@
     </head>
     <body>
       <?php
-        include './header.php';
-
+        include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
 
         // Not logged in
-        if (!isset($_COOKIE['user']) or !isset($_COOKIE['pw']) or !$_COOKIE['isAdmin']
-          or !validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
-            header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
+        if (SessionManager::isAdmin()) {
+            header('Location: ' . $URL . '/index.php');
             die();
         } else {
           ?>

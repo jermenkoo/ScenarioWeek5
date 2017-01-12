@@ -14,9 +14,9 @@
         <a href="<?php echo $URL ?>/src/view/account/editProfile.php">
         <div class="user">
         <?php
-            $user = $_SESSION['userID'];
+            $username = getUserName($_SESSION['userID']);
             $colour = SessionManager::isLoggedIn() ? getColour($_SESSION['userID']) : "black";
-            $colouredUser = sprintf("<span style='color: %s; margin-left: 10px;'>%s</span>", $colour, $user);
+            $colouredUser = sprintf("<span style='color: %s; margin-left: 10px;'>%s</span>", $colour, $username);
             $iconUrl = getIcon($_SESSION['userID']);
             echo "<img class='user-image' src='" . $iconUrl . "' />";
 
