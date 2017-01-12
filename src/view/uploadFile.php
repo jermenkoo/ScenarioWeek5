@@ -18,10 +18,10 @@
         ?>
 
         <form class="file-upload" action="
-        <?php echo $_SERVER['DOCUMENT_ROOT']  ?>/str/logic/upload.php" method="post" enctype="multipart/form-data">
+        <?php echo $URL; ?>/src/logic/upload.php" method="POST" enctype="multipart/form-data">
             <?php
             if (isset($_GET['url'])) {
-              $host = 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/';
+              $host = $URL . '/';
               echo "<div>Your file is available here: " . $host . $_GET['url'] . "</div>";
               echo "<br>";
             } elseif (isset($_GET['error'])) {

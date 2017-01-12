@@ -1,17 +1,17 @@
 <div class="nav">
     <?php
+    $URL = 'https://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'];
     include ($_SERVER['DOCUMENT_ROOT'] . "/src/logic/sessions.php");
     include ($_SERVER['DOCUMENT_ROOT'] . "/db.php");
     SessionManager::sessionStart("user");
-    
+
     if (isset($_GET['logout'])){
         echo 'issset';
         $_SESSION = array();
         session_destroy();
     }
-    if (SessionManager::isLoggedIn()) {
-          echo "<a href='/src/view/account/editProfile.php'>";
-        ?>
+    if (SessionManager::isLoggedIn()) { ?>
+        <a href="<?php echo $URL ?>/src/view/account/editProfile.php">
         <div class="user">
         <?php
             $user = $_SESSION['userID'];
@@ -30,15 +30,14 @@
 
         <div class='nav-buttons'>
             <a href='/'><span class='user-button'>Home</span></a>
-            <a href='/src/view/snippets.php'><span class='user-button'>Snippets</span></a>
-            <a href='/src/view/uploadFile.php'><span class='user-button'>Upload file</span></a>
+            <a href='<?php echo $URL ?>/src/view/snippets.php'><span class='user-button'>Snippets</span></a>
+            <a href='<?php echo $URL ?>/src/view/uploadFile.php'><span class='user-button'>Upload file</span></a>
             <?php
               if ($_SESSION['isAdmin']) {
                 echo "<a href='/src/view/admin.php'><span class='user-button'>Admin panel</span></a>";
               }
             ?>
-            <a href="<?php echo 'https://' . $_SERVER['SERVER_NAME'] . ':' 
-                   . $_SERVER['SERVER_PORT'] . '/index.php?logout='; ?>">Log out</a>
+            <a href="<?php echo $URL . '/index.php?logout='; ?>">Log out</a>
         </div>
 
         <?php
