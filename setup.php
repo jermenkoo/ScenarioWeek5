@@ -5,16 +5,37 @@
   include 'db.php';
 
   echo 'Connected successfully';
-  mysql_query('DROP DATABASE IF EXISTS test_db') or die(mysql_error());
-  $sql = 'CREATE Database test_db';
-  $retval = mysql_query( $sql, $conn );
+  // mysqli_query('DROP DATABASE IF EXISTS test_db') or die(mysql_error());
+
+  $retval = $conn->prepare('DROP DATABASE IF EXISTS test_db');
+  $retval->execute();
+  // $sql = 'CREATE Database test_db';
+  // $retval = mysql_query( $sql, $conn );
+
+  $retval = $conn->prepare("CREATE Database test_db");
+  $retval->execute();
+
   if(! $retval ) {
     die('Could not create database: ' . mysql_error());
   }
 
   echo "Database test_db created successfully\n";
 
-  $tableUser = 'CREATE TABLE user( '.
+  // $tableUser = 'CREATE TABLE user( '.
+  //   'id INT NOT NULL AUTO_INCREMENT, '.
+  //   'username VARCHAR(20) NOT NULL UNIQUE, '.
+  //   'password  VARCHAR(30) NOT NULL, '.
+  //   'colour   VARCHAR(100), '.
+  //   'icon    VARCHAR(10000) DEFAULT "https://openclipart.org/download/247319/abstract-user-flat-3.svg", '.
+  //   'homepage   VARCHAR(100), '.
+  //   'isAdmin   BOOL NOT NULL, '.
+  //   'privSnippet VARCHAR(10000),'.
+  //   'UNIQUE (username), '.
+  //   'primary key ( id ))';
+  // mysql_select_db('test_db');
+  // $retval = mysql_query( $tableUser, $conn );
+
+  $retval = $conn->prepare('CREATE TABLE user( '.
     'id INT NOT NULL AUTO_INCREMENT, '.
     'username VARCHAR(20) NOT NULL UNIQUE, '.
     'password  VARCHAR(30) NOT NULL, '.
@@ -24,15 +45,27 @@
     'isAdmin   BOOL NOT NULL, '.
     'privSnippet VARCHAR(10000),'.
     'UNIQUE (username), '.
-    'primary key ( id ))';
-  mysql_select_db('test_db');
-  $retval = mysql_query( $tableUser, $conn );
+    'primary key ( id ))');
+  $retval->execute();
 
   if(! $retval ) {
     die('Could not create table: ' . mysql_error());
   }
 
-  $tableSnippet = 'CREATE TABLE snippet( '.
+  // $tableSnippet = 'CREATE TABLE snippet( '.
+  //   'id INT NOT NULL AUTO_INCREMENT, '.
+  //   'snippet  VARCHAR(10000) NOT NULL, '.
+  //   'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, '.
+  //   'userId   INT NOT NULL, '.
+  //   'FOREIGN KEY fkUser(userId) '.
+  //   'REFERENCES user(id) '.
+  //   'ON UPDATE CASCADE '.
+  //   'ON DELETE RESTRICT, '.
+  //   'primary key ( id ))';
+  // mysql_select_db('test_db');
+  // $retval = mysql_query( $tableSnippet, $conn );
+
+  $retval = $conn->prepare('CREATE TABLE snippet( '.
     'id INT NOT NULL AUTO_INCREMENT, '.
     'snippet  VARCHAR(10000) NOT NULL, '.
     'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, '.
@@ -41,15 +74,27 @@
     'REFERENCES user(id) '.
     'ON UPDATE CASCADE '.
     'ON DELETE RESTRICT, '.
-    'primary key ( id ))';
-  mysql_select_db('test_db');
-  $retval = mysql_query( $tableSnippet, $conn );
+    'primary key ( id ))');
+  $retval->execute();
 
   if(! $retval ) {
     die('Could not create table: ' . mysql_error());
   }
 
-  $tableFile = 'CREATE TABLE file( '.
+  // $tableFile = 'CREATE TABLE file( '.
+  //   'id INT NOT NULL AUTO_INCREMENT, '.
+  //   'fileName  VARCHAR(10000) NOT NULL, '.
+  //   'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, '.
+  //   'userId   INT NOT NULL, '.
+  //   'FOREIGN KEY fkUser(userId) '.
+  //   'REFERENCES user(id) '.
+  //   'ON UPDATE CASCADE '.
+  //   'ON DELETE RESTRICT, '.
+  //   'primary key ( id ))';
+  // mysql_select_db('test_db');
+  // $retval = mysql_query( $tableFile, $conn );
+
+  $retval = $conn->prepare('CREATE TABLE file( '.
     'id INT NOT NULL AUTO_INCREMENT, '.
     'fileName  VARCHAR(10000) NOT NULL, '.
     'createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, '.
@@ -58,9 +103,8 @@
     'REFERENCES user(id) '.
     'ON UPDATE CASCADE '.
     'ON DELETE RESTRICT, '.
-    'primary key ( id ))';
-  mysql_select_db('test_db');
-  $retval = mysql_query( $tableFile, $conn );
+    'primary key ( id ))');
+  $retval->execute();
 
   if(! $retval ) {
     die('Could not create table: ' . mysql_error());
