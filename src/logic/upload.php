@@ -21,7 +21,7 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        $fileurl = $_SESSION['userID'] . "/" . basename($_FILES["fileToUpload"]["name"]);
+        $fileurl = '/userID_' . $_SESSION['userID'] . "/" . basename($_FILES["fileToUpload"]["name"]);
         header('Location: ' . $URL . '/src/view/uploadFile.php?url=' . $fileurl);
     } else {
       header('Location: ' . $URL . '/src/view/uploadFile.php?error=' . "Sorry, there was an error uploading your file.");
