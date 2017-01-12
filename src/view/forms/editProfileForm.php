@@ -24,6 +24,7 @@ Profile Colour <input type="textfield" name="profileColour" value="<?php echo $d
 Private Snippet <input type="textfield" name="snippet" value="<?php echo $data['privSnippet']; ?>"></br>
 <?php if (SessionManager::isAdmin()) { ?>
     Admin <input type="checkbox" name="admin" <?php if ($data['isAdmin']) { echo "checked"; } ?> ></br>
+    Can create snippets <input type="checkbox" name="canPost" <?php if ($data['canPost']) { echo "checked"; } ?> ></br>
 <?php } ?>
 
 Homepage <input type="textfield" name="homepage" value="<?php echo $data['homepage']; ?>"></br>

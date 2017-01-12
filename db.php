@@ -67,7 +67,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
   function getUserData($userId) {
     global $conn;
 
-    $retval = $conn->prepare("SELECT id, username, colour, icon, privSnippet, isAdmin, homepage FROM user WHERE id = :id;");
+    $retval = $conn->prepare("SELECT id, username, colour, icon, privSnippet, isAdmin, homepage, canPost FROM user WHERE id = :id;");
     $retval->execute(array('id' => $userId));
 
     foreach ($retval as $row) {
