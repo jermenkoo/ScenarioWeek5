@@ -16,7 +16,6 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     // check whether the use wants to log out, if yes, destroy session
         include 'src/view/publicUsersTable.php';
     echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
+    echo '</pre>';
     ?></body>
 </html>

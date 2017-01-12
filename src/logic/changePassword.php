@@ -10,11 +10,11 @@
         $success = changePassword($_POST['userID'], $_POST['oldPW'], $_POST['newPW']);
       }
       if ($success) {
-        //header('Location: ' . $URL . '/src/view/account/changePW.php?success=');
+        header('Location: ' . $URL . '/src/view/account/changePW.php?success=');
       } else {
-        //header('Location: ' . $URL . '/src/view/account/changePW.php?error=' . 'old password wrong');
+        header('Location: ' . $URL . '/src/view/account/changePW.php?error=' . 'Old password not valid.');
       }
     } else {
-      header('Location: ' . $URL . '/src/view/account/changePW.php?error=' . 'old/new pw missing');
+      header('Location: ' . $URL . '/src/view/account/changePW.php?error=' . 'Old/new password missing.');
     }
 ?>

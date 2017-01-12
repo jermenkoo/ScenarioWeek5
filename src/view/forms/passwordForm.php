@@ -10,10 +10,8 @@ if (SessionManager::isLoggedIn() && isset($_GET['userID'])) {
     } else {
         die("ILLEGAL REQUEST");
     }
-
-
 ?>
-<form action="<?php echo $URL; ?>/src/logic/changePassword.php" method="POST">
+<form class="file-upload" action="<?php echo $URL; ?>/src/logic/changePassword.php" method="POST">
 <input type="hidden" name="userID" value="<?php echo $_GET['userID']; ?>" >
 Old password: <input type="password" name="oldPW"></br>
 New password: <input type="password" name="newPW"></br>

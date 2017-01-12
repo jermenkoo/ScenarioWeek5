@@ -29,12 +29,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     $retval = $conn->prepare("SELECT password FROM user WHERE id = :id;");
     $retval->execute(array('id' => $id));
 
-    echo 'User id ' . $id;
-    echo 'Pw  ' . $password;
-
     foreach ($retval as $row) {
-      echo $password;
-      echo $row['password'];
       if (password_verify($password, $row['password'])) {
         echo $row;
         return True;
@@ -109,17 +104,12 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
   function changePassword($userId, $oldPW, $newPW) {
     global $conn;
 
-    echo 'User id ' . $userId;
-
     if (validCredentialsId($userId, $oldPW)) {
-      echo var_dump(validCredentialsId($userId, $oldPW));
       $retval = $conn->prepare("UPDATE user SET password = :newPW  WHERE id = :id;");
       $retval->execute(array('id' => $userId, 'newPW' => password_hash($newPW, PASSWORD_DEFAULT)));
 
       return True;
     } else {
-      echo var_dump('not valid');
-
       return False;
     }
   }
