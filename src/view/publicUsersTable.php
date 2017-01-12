@@ -28,6 +28,7 @@
                 <script type="text/javascript">
                   var snip = "<?php echo $snippet; ?>";
                   var user = "<?php echo $colouredUser; ?>";
+                  console.log(snip);
                   document.write(DOMPurify.sanitize(snip));
                   document.querySelector('.user-label').innerHTML = DOMPurify.sanitize(user);
                 </script>

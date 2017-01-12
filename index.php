@@ -7,7 +7,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 <html>
     <head>
         <link rel="stylesheet" href="./src/styles/style.css">
-        <script type="text/javascript" src="/src/dompurify/purify.js" />
+        <script type="text/javascript" src="/src/dompurify/purify.js"></script>
     </head>
     <body>
 
@@ -15,6 +15,9 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     include 'db.php';
     include 'src/view/header.php';
     // User is logged in
+    ?>
+
+    <?php
     if (isset($_COOKIE['user']) && isset($_COOKIE['pw']) && validCredentials($_COOKIE['user'], $_COOKIE['user'])) {
         include 'src/view/publicUsersTable.php';
     } else {
