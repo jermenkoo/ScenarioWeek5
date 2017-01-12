@@ -5,7 +5,7 @@
 
   $dbhost = 'localhost';
   $dbuser = 'root';
-  $dbpass = 'root';
+  $dbpass = 't*_41sRwJw-jvHR';
 
   try {
     // Connect to MySQL
