@@ -1,9 +1,20 @@
 <?php
-  include '../../db.php';
+  include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
 
-  if (isset($_POST['oldPw']) && isset($_POST['newPW'])) {
-    changePassword(_SESSION['userID'], $_POST['oldPw'], $_POST['newPw']);
-  } else {
-
-  }
+  if (SessionManager::isLoggedIn())
+    if (isset($_POST['oldPW']) && isset($_POST['newPW']) && isset($_POST['userID'])) {
+      $success;
+      if(SessionManager::isAdmin() && ($_SESSION['userID'] != $_POST['userID']) ){
+        $success = changePasswordAdmin($_POST['userID'], $_POST['oldPW'], $_POST['newPW']);
+      } else {
+        $success = changePassword($_POST['userID'], $_POST['oldPW'], $_POST['newPW']);
+      }
+      if ($success) {
+        header('Location: ' . $URL . '/src/view/account/changePW.php?success=');
+      } else {
+        header('Location: ' . $URL . '/src/view/account/changePW.php?error=' . 'old password wrong');
+      }
+    } else {
+      header('Location: ' . $URL . '/src/view/account/changePW.php?error=' . 'old/new pw missing');
+    }
 ?>
