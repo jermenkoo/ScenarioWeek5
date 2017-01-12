@@ -10,8 +10,8 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     <body>
 
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . '/db.php');
-    include '../header.php';
+    include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
+    
     if (isset($_POST['username']) && isset($_POST['password'])){
         $valid = validCredentials($_POST['username'], $_POST['password']);
         $isAdmin = (bool) $valid[2];

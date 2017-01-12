@@ -1,7 +1,9 @@
 <div class="nav">
     <?php
     include ($_SERVER['DOCUMENT_ROOT'] . "/src/logic/sessions.php");
+    include ($_SERVER['DOCUMENT_ROOT'] . "/db.php");
     SessionManager::sessionStart("user");
+    
     if (isset($_GET['logout'])){
         echo 'issset';
         $_SESSION = array();
@@ -17,8 +19,12 @@
             $colouredUser = sprintf("<span style='color: %s; margin-left: 10px;'>%s</span>", $colour, $user);
             $iconUrl = getIcon($_SESSION['userID']);
             echo "<img class='user-image' src='" . $iconUrl . "' />";
-            echo $colouredUser;
-        ?>
+
+            ?>
+            <script type="text/javascript">
+              var user = "<?php echo $colouredUser; ?>";
+              document.write(DOMPurify.sanitize(user));
+            </script>
         </div>
         </a>
 

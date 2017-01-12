@@ -1,4 +1,10 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
+?>
+
+<?php
   include 'config.php';
   $db = 'test_db';
 
@@ -96,7 +102,6 @@
       return $row[0];
     }
   }
-
   function getUserData($userId) {
     global $conn;
     // global $db;
@@ -125,8 +130,8 @@
     // mysql_select_db($db);
     // $retval = mysql_query( $sql, $conn );
 
-    $retval = $conn->prepare("UPDATE user SET username = :userName, password = :pw, colour = :colour, icon = :icon, homepage = :homepage, isAdmin = :admin, privSnippet = :privSnip   WHERE id = :id;");
-    $retval->execute(array('id' => $userId, 'userName' => $userName, 'pw' => $password, 'colour' => $colour, 'icon' => $icon, 'homePage' => $homePage, 'admin' => $admin, 'privSnip' => $snippet));
+    $retval = $conn->prepare("UPDATE user SET username = :username, password = :pw, colour = :colour, icon = :icon, homepage = :homepage, isAdmin = :admin, privSnippet = :privSnip   WHERE id = :id;");
+    $retval->execute(array('id' => $userId, 'username' => $username, 'pw' => $password, 'colour' => $colour, 'icon' => $icon, 'homepage' => $homepage, 'admin' => $admin, 'privSnip' => $snippet));
 
     if (!$retval) {
       die('Could not update user: ' . mysql_error());
@@ -185,15 +190,15 @@
       return $row[0];
     }
   }
-  function deleteSnippet($snippetId){
+  function deleteSnippet($snippetId, $userId){
       global $conn;
       // global $db;
       // $sql = sprintf("DELETE FROM snippet WHERE id=%s", $snippetId);
       // mysql_select_db($db);
       // $retval = mysql_query( $sql, $conn);
 
-      $retval = $conn->prepare("DELETE FROM snippet WHERE id = :id;");
-      $retval->execute(array('id' => $snippetId));
+      $retval = $conn->prepare("DELETE FROM snippet WHERE id = :id AND userId = :userId;");
+      $retval->execute(array('id' => $snippetId, 'userId' => $userId));
 
       if (!$retval) {
           die('Invalid query: ' . mysql_error());
