@@ -1,5 +1,7 @@
 <?php
-$target_dir = "/vagrant/" . $_COOKIE['id'] . "/";
+include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
+
+$target_dir = $_SERVER['DOCUMENT_ROOT'] . '/userID_' . $_SESSION['userID'] . '/';
 if (!file_exists($target_dir)) {
   mkdir($target_dir);
 }
@@ -9,8 +11,7 @@ $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
 // Check if file already exists
 if (file_exists($target_file)) {
-    header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] .
-    '/src/view/uploadFile.php?error=' . "Sorry, file already exists.");
+    header('Location: ' . $URL . '/src/view/uploadFile.php?error=' . "Sorry, file already exists.");
     $uploadOk = 0;
 }
 
@@ -20,12 +21,10 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        $url = $_COOKIE['id'] . "/" . basename($_FILES["fileToUpload"]["name"]);
-        header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] .
-        '/src/view/uploadFile.php?url=' . $url);
+        $fileurl = $_SESSION['userID'] . "/" . basename($_FILES["fileToUpload"]["name"]);
+        header('Location: ' . $URL . '/src/view/uploadFile.php?url=' . $fileurl);
     } else {
-      header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] .
-      '/src/view/uploadFile.php?error=' . "Sorry, there was an error uploading your file.");
+      header('Location: ' . $URL . '/src/view/uploadFile.php?error=' . "Sorry, there was an error uploading your file.");
     }
 }
 ?>

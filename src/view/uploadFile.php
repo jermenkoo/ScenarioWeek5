@@ -12,14 +12,16 @@
 
         // Not logged in
         if (!SessionManager::isLoggedIn()) {
-            header('Location: ' . $_SERVER['DOCUMENT_ROOT'] . '/index.php');
+            header('Location: ' . $URL . '/index.php');
             die();
         }
         ?>
 
-        <form class="file-upload" action="
-        <?php echo $URL; ?>/src/logic/upload.php" method="POST" enctype="multipart/form-data">
-            <?php
+        <form class="file-upload" 
+              action="<?php echo $URL; ?>/src/logic/upload.php" 
+              method="POST" 
+              enctype="multipart/form-data">
+        <?php
             if (isset($_GET['url'])) {
               $host = $URL . '/';
               echo "<div>Your file is available here: " . $host . $_GET['url'] . "</div>";
