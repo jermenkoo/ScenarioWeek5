@@ -19,6 +19,14 @@ chsh -s `which fish` # for the root
 
 sed -i '12s#.*#DocumentRoot /vagrant#' /etc/apache2/sites-enabled/000-default.conf
 sed -i '164s#.*#<Directory /vagrant>#' /etc/apache2/apache2.conf
+
+make-ssl-cert generate-default-snakeoil --force-overwrite
+a2enmod ssl
+a2ensite default-ssl.conf
+
+# change the ssl folder
+sed -i '5s#.*#DocumentRoot /vagrant#' /etc/apache2/sites-available/default-ssl.conf
+
 # restart the service
 service apache2 restart
 # check if php is installed
