@@ -110,7 +110,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     // $retval = $conn->prepare("SELECT privSnippet FROM user WHERE id = :id;");
     // $retval->execute(array('id' => $id));
 
-    $retval = $conn->prepare("SELECT * FROM user WHERE id = :id;");
+    $retval = $conn->prepare("SELECT userId, isAdmin, username FROM user WHERE id = :id;");
     $retval->execute(array('id' => $userId));
 
     if (!$retval) {
@@ -121,19 +121,31 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
       return $row;
     }
   }
-  function updateUserData($userId, $username, $password, $icon, $colour, $snippet, $homepage, $admin) {
+  function updateUserData($userId, $username, $icon, $colour, $snippet, $homepage, $admin) {
     global $conn;
     // global $db;
     // $sql = sprintf("UPDATE user SET username='%s', password='%s', colour='%s',icon ='%s', homepage='%s', isAdmin='%s', privSnippet='%s'   WHERE id=%s;" , $username, $password, $colour, $icon, $homepage, $admin, $snippet, $userID);
     // mysql_select_db($db);
     // $retval = mysql_query( $sql, $conn );
 
-    $retval = $conn->prepare("UPDATE user SET username = :username, password = :pw, colour = :colour, icon = :icon, homepage = :homepage, isAdmin = :admin, privSnippet = :privSnip   WHERE id = :id;");
-    $retval->execute(array('id' => $userId, 'username' => $username, 'pw' => $password, 'colour' => $colour, 'icon' => $icon, 'homepage' => $homepage, 'admin' => $admin, 'privSnip' => $snippet));
+    $retval = $conn->prepare("UPDATE user SET username = :username, colour = :colour, icon = :icon, homepage = :homepage, isAdmin = :admin, privSnippet = :privSnip   WHERE id = :id;");
+    $retval->execute(array('id' => $userId, 'username' => $username, 'colour' => $colour, 'icon' => $icon, 'homepage' => $homepage, 'admin' => $admin, 'privSnip' => $snippet));
 
     if (!$retval) {
       die('Could not update user: ' . mysql_error());
     }
+  }
+  function changePassword($userId, $oldPw, $newPW) {
+    global $conn;
+
+    $retval = $conn->prepare("UPDATE user SET password : newPw  WHERE id = :id and password = :oldPw;");
+    $retval->execute(array('id' => $userId, 'newPw' => $newPw, 'oldPw' => $oldPw));
+
+    foreach ($retval as $row) {
+      return True;
+    }
+
+    return False;
   }
   function getAllUsers() {
     global $conn;

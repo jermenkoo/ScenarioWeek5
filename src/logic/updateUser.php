@@ -9,7 +9,7 @@
 
   if(isset($_GET['username']) && isset($_COOKIE['id']) && validCredentials($_COOKIE['user'], $_COOKIE['pw'])){
       $admin = getData('admin') == "on" ? 1 : 0;
-      updateUserData($_COOKIE['id'], getData('username'), getData('pw'), getData('iconURL'), getData('profileColour'), getData('snippet'), getData('homepage'), $admin);;
+      updateUserData($_COOKIE['id'], getData('username'), getData('iconURL'), getData('profileColour'), getData('snippet'), getData('homepage'), $admin);;
   }
 
   header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/');
