@@ -5,8 +5,8 @@ sudo apt-get install -y fish
 sudo apt-get install -y emacs
 
 # install LAMP
-echo "mysql-server-5.5 mysql-server/root_password password >g37M:M_>k76^,Q2?n,c+^4|JEVj1vF|;p4JS/V4%mY!uL!;r8IPfyf5>>\z%G<N" | debconf-set-selections
-echo "mysql-server-5.5 mysql-server/root_password_again password >g37M:M_>k76^,Q2?n,c+^4|JEVj1vF|;p4JS/V4%mY!uL!;r8IPfyf5>>\z%G<N" | debconf-set-selections
+sudo echo "mysql-server-5.5 mysql-server/root_password password root" | debconf-set-selections
+sudo echo "mysql-server-5.5 mysql-server/root_password_again password root" | debconf-set-selections
 sudo apt-get install -y lamp-server^ phpmyadmin
 
 sudo echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
