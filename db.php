@@ -22,18 +22,42 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
       }
     }
   }
+
+  function validCredentialsId($id, $password){
+    global $conn;
+
+    $retval = $conn->prepare("SELECT password FROM user WHERE id = :id;");
+    $retval->execute(array('id' => $id));
+
+    echo 'User id ' . $id;
+    echo 'Pw  ' . $password;
+
+    foreach ($retval as $row) {
+      echo $password;
+      echo $row['password'];
+      if (password_verify($password, $row['password'])) {
+        echo $row;
+        return True;
+      } else {
+        return False;
+      }
+    }
+  }
+
   function createUser($username, $password){
     global $conn;
 
     $retval = $conn->prepare("INSERT INTO user (username, password, isAdmin) VALUES (:username, :password, 0);");
     $retval->execute(array('username' => $username, 'password' => password_hash($password, PASSWORD_DEFAULT)));
   }
+
   function setColour($id, $color){
     global $conn;
 
     $retval = $conn->prepare("UPDATE  `user` SET colour = :color WHERE id = :id;");
     $retval->execute(array('colour' => $color, 'id' => $id));
   }
+
   function getColour($id){
     global $conn;
 
@@ -44,12 +68,14 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
       return $row[0];
     }
   }
+
   function setPrivSnippet($id, $snippet){
     global $conn;
 
     $retval = $conn->prepare("UPDATE  `user` SET privSnippet = :snip WHERE id = :id;");
     $retval->execute(array('id' => $id, 'snip' => $snippet));
   }
+
   function getPrivSnippet($id){
     global $conn;
 
@@ -60,6 +86,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
       return $row[0];
     }
   }
+
   function getUserData($userId) {
     global $conn;
 
@@ -70,13 +97,9 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
       return $row;
     }
   }
+
   function updateUserData($userId, $username, $icon, $colour, $snippet, $homepage, $admin, $canPost) {
     global $conn;
-
-    // global $db;
-    // $sql = sprintf("UPDATE user SET username='%s', password='%s', colour='%s',icon ='%s', homepage='%s', isAdmin='%s', privSnippet='%s'   WHERE id=%s;" , $username, $password, $colour, $icon, $homepage, $admin, $snippet, $userID);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("UPDATE user SET username = :username, colour = :colour, icon = :icon, homepage = :homepage, isAdmin = :admin, privSnippet = :privSnip, canPost = :canPost   WHERE id = :id;");
     $retval->execute(array('id' => $userId, 'username' => $username, 'colour' => $colour, 'icon' => $icon, 'homepage' => $homepage, 'admin' => $admin, 'privSnip' => $snippet, 'canPost' => $canPost));
@@ -85,26 +108,37 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
   function changePassword($userId, $oldPW, $newPW) {
     global $conn;
-    $retval = $conn->prepare("UPDATE user SET password = :newPW  WHERE id = :id and password = :oldPW;");
-    $retval->execute(array('id' => $userId, 'newPW' => md5($newPW), 'oldPW' => md5($oldPW)));
-    echo var_dump(retval);
-    foreach ($retval as $row) {
+
+    echo 'User id ' . $userId;
+
+    if (validCredentialsId($userId, $oldPW)) {
+      echo var_dump(validCredentialsId($userId, $oldPW));
+      $retval = $conn->prepare("UPDATE user SET password = :newPW  WHERE id = :id;");
+      $retval->execute(array('id' => $userId, 'newPW' => password_hash($newPW, PASSWORD_DEFAULT)));
+
       return True;
+    } else {
+      echo var_dump('not valid');
+
+      return False;
     }
-    return False;
   }
+
   function changePasswordAdmin($userId, $newPW) {
     global $conn;
 
     $retval = $conn->prepare("UPDATE user SET password = :newPW  WHERE id = :id;");
     $retval->execute(array('id' => $userId, 'newPW' => md5($newPW)));
 
+    echo var_dump($retval);
+
     foreach ($retval as $row) {
       return True;
     }
 
     return False;
   }
+
   function getUserName($userID){
     global $conn;
     $retval = $conn->prepare("SELECT username FROM user WHERE id=:userID;");
@@ -114,6 +148,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
       return $row[0];
     }
   }
+
   function getAllUsers() {
     global $conn;
 
@@ -127,12 +162,14 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
     return $arr;
   }
+
   function createSnippet($snippet, $userId){
     global $conn;
 
     $retval = $conn->prepare("INSERT INTO snippet (userId, snippet) VALUES (:id, :snip);");
     $retval->execute(array('id' => $userId, 'snip' => $snippet));
   }
+
   function getPublicSnippet($userId){
     global $conn;
 
@@ -143,12 +180,14 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
       return $row[0];
     }
   }
+
   function deleteSnippet($snippetId, $userId){
       global $conn;
 
       $retval = $conn->prepare("DELETE FROM snippet WHERE id = :id AND userId = :userId;");
       $retval->execute(array('id' => $snippetId, 'userId' => $userId));
   }
+
   function getAllSnippets($userId){
     global $conn;
 
@@ -162,12 +201,14 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
     return $arr;
   }
+
   function setIcon($id, $icon){
     global $conn;
 
     $retval = $conn->prepare("UPDATE user SET icon = :icon WHERE id = :id;");
     $retval->execute(array('id' => $id, 'icon' => $icon));
   }
+
   function getIcon($id){
     global $conn;
 
@@ -178,12 +219,14 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
       return $row[0];
     }
   }
+
   function createFile($fileName, $userId){
     global $conn;
 
     $retval = $conn->prepare("INSERT INTO file (userId, fileName) VALUES (:id, :fileName);");
     $retval->execute(array('id' => $id, 'fileName' => $fileName));
   }
+
   function getAllFiles($userId){
     global $db;
 
@@ -197,6 +240,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
     return $arr;
   }
+
   function canUserPost($id){
     global $conn;
 
