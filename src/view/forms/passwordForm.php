@@ -7,10 +7,10 @@ if (SessionManager::isLoggedIn()) {
     $data = array();
     $data = getUserData($_SESSION['userID']);
 ?>
-<form action="/src/logic/changePassword.php" method="GET">
-Old password: <input type="textfield" name="oldPw" value="<?php echo $data['username']; ?>"></br>
-New password: <input type="textfield" name="newPw" value="<?php echo $data['password']; ?>"></br>
-
+<form action="<?php echo $URL; ?>/src/logic/changePassword.php" method="POST">
+<input type="hidden" name="userID">
+Old password: <input type="password" name="oldPW"></br>
+New password: <input type="password" name="newPW"></br>
 <input value="Save" type="submit">
 </form>
 

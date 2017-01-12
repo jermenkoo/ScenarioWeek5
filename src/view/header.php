@@ -19,8 +19,7 @@
             $colouredUser = sprintf("<span style='color: %s; margin-left: 10px;'>%s</span>", $colour, $username);
             $iconUrl = getIcon($_SESSION['userID']);
             echo "<img class='user-image' src='" . $iconUrl . "' />";
-
-            ?>
+        ?>
             <script type="text/javascript">
               var user = "<?php echo $colouredUser; ?>";
               document.write(DOMPurify.sanitize(user));
@@ -33,7 +32,6 @@
             <?php if (canUserPost($_SESSION['userID'])) {
               ?> <a href='<?php echo $URL ?>/src/view/snippets.php'><span class='user-button'>Snippets</span></a>
             <?php } ?>
-
             <a href='<?php echo $URL ?>/src/view/uploadFile.php'><span class='user-button'>Upload file</span></a>
             <?php
               if ($_SESSION['isAdmin']) {

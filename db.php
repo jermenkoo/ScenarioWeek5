@@ -85,23 +85,23 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     $retval = $conn->prepare("UPDATE user SET username = :username, colour = :colour, icon = :icon, homepage = :homepage, isAdmin = :admin, privSnippet = :privSnip, canPost = :canPost   WHERE id = :id;");
     $retval->execute(array('id' => $userId, 'username' => $username, 'colour' => $colour, 'icon' => $icon, 'homepage' => $homepage, 'admin' => $admin, 'privSnip' => $snippet, 'canPost' => $canPost));
   }
-  function changePassword($userId, $oldPw, $newPW) {
+
+
+  function changePassword($userId, $oldPW, $newPW) {
     global $conn;
-
-    $retval = $conn->prepare("UPDATE user SET password : newPw  WHERE id = :id and password = :oldPw;");
-    $retval->execute(array('id' => $userId, 'newPw' => $newPw, 'oldPw' => $oldPw));
-
+    $retval = $conn->prepare("UPDATE user SET password = :newPW  WHERE id = :id and password = :oldPW;");
+    $retval->execute(array('id' => $userId, 'newPW' => md5($newPW), 'oldPW' => md5($oldPW)));
+    echo var_dump(retval);
     foreach ($retval as $row) {
       return True;
     }
-
     return False;
   }
   function changePasswordAdmin($userId, $newPW) {
     global $conn;
 
-    $retval = $conn->prepare("UPDATE user SET password : newPw  WHERE id = :id;");
-    $retval->execute(array('id' => $userId, 'newPw' => $newPw));
+    $retval = $conn->prepare("UPDATE user SET password = :newPW  WHERE id = :id;");
+    $retval->execute(array('id' => $userId, 'newPW' => md5($newPW)));
 
     foreach ($retval as $row) {
       return True;
