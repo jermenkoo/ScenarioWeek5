@@ -16,7 +16,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     //$retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("SELECT id, isAdmin FROM user WHERE username = :name and password = :password;");
-    $retval->execute(array('name' => $username, 'password' => $password));
+    $retval->execute(array('name' => $username, 'password' => md5($password)));
 
     foreach ($retval as $row) {
       return [true, $row['id'], $row['isAdmin']];
@@ -32,7 +32,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("INSERT INTO user (username, password, isAdmin) VALUES (:username, :password, 0);");
-    $retval->execute(array('username' => $username, 'password' => $password));
+    $retval->execute(array('username' => $username, 'password' => md5($password)));
 
     if (!$retval) {
       die('Could not create user: ' . mysql_error());
