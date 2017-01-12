@@ -35,6 +35,7 @@ sed -i '5s#.*#DocumentRoot /vagrant#' /etc/apache2/sites-available/default-ssl.c
 sudo sed -i "/ServerTokens/s/OS/Prod/" /etc/apache2/conf-available/security.conf
 sudo sed -i "/ServerSignature/s/On/Off/" /etc/apache2/conf-available/security.conf
 sudo sed -i "/expose_php/s/On/Off/" /etc/php5/apache2/php.ini
+sudo sed -i "/disable_f/s/\$/exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source/" /etc/php5/apache2/php.ini
 sudo sed -i "/Options/s/Indexes//" /etc/apache2/apache2.conf
 
 # security again please
