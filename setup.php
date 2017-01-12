@@ -31,6 +31,7 @@
       icon    VARCHAR(10000) DEFAULT 'https://openclipart.org/download/247319/abstract-user-flat-3.svg',
       homepage   VARCHAR(100),
       isAdmin   BOOL NOT NULL,
+      canPost   BOOL NOT NULL DEFAULT 1,
       privSnippet VARCHAR(10000),
       UNIQUE (username),
       primary key ( id ))");

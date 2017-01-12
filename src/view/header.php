@@ -30,7 +30,10 @@
 
         <div class='nav-buttons'>
             <a href='/'><span class='user-button'>Home</span></a>
-            <a href='<?php echo $URL ?>/src/view/snippets.php'><span class='user-button'>Snippets</span></a>
+            <?php if (canUserPost($_SESSION['userID'])) {
+              ?> <a href='<?php echo $URL ?>/src/view/snippets.php'><span class='user-button'>Snippets</span></a>
+            <?php } ?>
+
             <a href='<?php echo $URL ?>/src/view/uploadFile.php'><span class='user-button'>Upload file</span></a>
             <?php
               if ($_SESSION['isAdmin']) {
@@ -47,7 +50,7 @@
             <a href='/src/view/account/login.php'><span class='user-button'>Log in</span></a>
             <a href='/src/view/account/signup.php'><span class='user-button'>Sign up</span></a>
             </div>
-    <?php 
+    <?php
     }
     ?>
 </div>

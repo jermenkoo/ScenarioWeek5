@@ -34,6 +34,10 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
         elseif (!SessionManager::isLoggedIn()) {
             header('Location: ' . 'https://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
             die();
+        // Not allowed
+        } elseif (!canUserPost($_SESSION['userID'])){
+          header('Location: ' . 'https://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
+          die();
         } else {
             if (isset($_POST["snippet"])) {
                 createSnippet($_POST["snippet"], $_SESSION['userID']);

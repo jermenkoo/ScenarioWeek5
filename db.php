@@ -24,38 +24,18 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
   }
   function createUser($username, $password){
     global $conn;
-    // global $db;
-    // $sql = sprintf("INSERT INTO user (username, password, isAdmin) VALUES ('%s', '%s', 0);", $username, $password);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("INSERT INTO user (username, password, isAdmin) VALUES (:username, :password, 0);");
     $retval->execute(array('username' => $username, 'password' => md5($password)));
-
-    if (!$retval) {
-      die('Could not create user: ' . mysql_error());
-    }
   }
   function setColour($id, $color){
     global $conn;
-    // global $db;
-    // $sql = sprintf("UPDATE  `user` SET colour='%s' WHERE id=%s;", $color, $id);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("UPDATE  `user` SET colour = :color WHERE id = :id;");
     $retval->execute(array('colour' => $color, 'id' => $id));
-
-    if (!$retval) {
-      die('Could not update colour: ' . mysql_error());
-    }
   }
   function getColour($id){
     global $conn;
-    // global $db;
-    // $sql = sprintf("SELECT colour FROM user WHERE id=%s;", $id);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("SELECT colour FROM user WHERE id = :id;");
     $retval->execute(array('id' => $id));
@@ -70,31 +50,15 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
   }
   function setPrivSnippet($id, $snippet){
     global $conn;
-    // global $db;
-    // $sql = sprintf("UPDATE  `user` SET privSnippet='%s' WHERE id=%s;", $snippet, $id);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("UPDATE  `user` SET privSnippet = :snip WHERE id = :id;");
     $retval->execute(array('id' => $id, 'snip' => $snippet));
-
-    if (!$retval) {
-      die('Could not update private snippet: ' . mysql_error());
-    }
   }
   function getPrivSnippet($id){
     global $conn;
-    // global $db;
-    // $sql = sprintf("SELECT privSnippet FROM user WHERE id=%s;", $id);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("SELECT privSnippet FROM user WHERE id = :id;");
     $retval->execute(array('id' => $id));
-
-    if (!$retval) {
-      die('Could not get private snippet: ' . mysql_error());
-    }
 
     foreach ($retval as $row) {
       return $row[0];
@@ -102,37 +66,24 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
   }
   function getUserData($userId) {
     global $conn;
-    // global $db;
-    // $sql = sprintf("SELECT * FROM user WHERE id=%s;", $userID);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn);
-    //
-    // $retval = $conn->prepare("SELECT privSnippet FROM user WHERE id = :id;");
-    // $retval->execute(array('id' => $id));
 
-    $retval = $conn->prepare("SELECT userId, isAdmin, username FROM user WHERE id = :id;");
+    $retval = $conn->prepare("SELECT id, username, colour, icon, privSnippet, isAdmin, homepage FROM user WHERE id = :id;");
     $retval->execute(array('id' => $userId));
-
-    if (!$retval) {
-        die('Could not get user: ' . mysql_error());
-    }
 
     foreach ($retval as $row) {
       return $row;
     }
   }
-  function updateUserData($userId, $username, $icon, $colour, $snippet, $homepage, $admin) {
+  function updateUserData($userId, $username, $icon, $colour, $snippet, $homepage, $admin, $canPost) {
     global $conn;
+
     // global $db;
     // $sql = sprintf("UPDATE user SET username='%s', password='%s', colour='%s',icon ='%s', homepage='%s', isAdmin='%s', privSnippet='%s'   WHERE id=%s;" , $username, $password, $colour, $icon, $homepage, $admin, $snippet, $userID);
     // mysql_select_db($db);
     // $retval = mysql_query( $sql, $conn );
-    $retval = $conn->prepare("UPDATE user SET username = :username, colour = :colour, icon = :icon, homepage = :homepage, isAdmin = :admin, privSnippet = :privSnip   WHERE id = :id;");
-    $retval->execute(array('id' => $userId, 'username' => $username, 'colour' => $colour, 'icon' => $icon, 'homepage' => $homepage, 'admin' => $admin, 'privSnip' => $snippet));
 
-    if (!$retval) {
-      die('Could not update user: ' . mysql_error());
-    }
+    $retval = $conn->prepare("UPDATE user SET username = :username, colour = :colour, icon = :icon, homepage = :homepage, isAdmin = :admin, privSnippet = :privSnip, canPost = :canPost   WHERE id = :id;");
+    $retval->execute(array('id' => $userId, 'username' => $username, 'colour' => $colour, 'icon' => $icon, 'homepage' => $homepage, 'admin' => $admin, 'privSnip' => $snippet, 'canPost' => $canPost));
   }
   function changePassword($userId, $oldPw, $newPW) {
     global $conn;
@@ -162,26 +113,16 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     global $conn;
     $retval = $conn->prepare("SELECT username FROM user WHERE id=:userID;");
     $retval->execute(array('userID' => $userID));
-    if (!$retval){
-      die('Could not get username! ' . mysql_error());
-    }
+
     foreach ($retval as $row) {
       return $row[0];
     }
   }
   function getAllUsers() {
     global $conn;
-    // global $db;
-    // $sql = sprintf("SELECT * FROM user");
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn);
 
     $retval = $conn->prepare("SELECT * FROM user");
     $retval->execute();
-
-    if (!$retval) {
-      die('Could not get users: ' . mysql_error());
-    }
 
     $arr = array();
     foreach ($retval as $row) {
@@ -192,31 +133,15 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
   }
   function createSnippet($snippet, $userId){
     global $conn;
-    // global $db;
-    // $sql = sprintf("INSERT INTO snippet (userId, snippet) VALUES ('%s', '%s');", $userId, $snippet);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("INSERT INTO snippet (userId, snippet) VALUES (:id, :snip);");
     $retval->execute(array('id' => $userId, 'snip' => $snippet));
-
-    if (!$retval) {
-      die('Could not create snippet: ' . mysql_error());
-    }
   }
   function getPublicSnippet($userId){
     global $conn;
-    // global $db;
-    // $sql = sprintf("SELECT snippet FROM snippet WHERE userId=%s ORDER BY createdAt DESC", $userId);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn);
 
     $retval = $conn->prepare("SELECT snippet FROM snippet WHERE userId = :userId ORDER BY createdAt DESC;");
     $retval->execute(array('userId' => $userId));
-
-    if (!$retval) {
-      die('Could not get snippets: ' . mysql_error());
-    }
 
     foreach ($retval as $row) {
       return $row[0];
@@ -224,31 +149,15 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
   }
   function deleteSnippet($snippetId, $userId){
       global $conn;
-      // global $db;
-      // $sql = sprintf("DELETE FROM snippet WHERE id=%s", $snippetId);
-      // mysql_select_db($db);
-      // $retval = mysql_query( $sql, $conn);
 
       $retval = $conn->prepare("DELETE FROM snippet WHERE id = :id AND userId = :userId;");
       $retval->execute(array('id' => $snippetId, 'userId' => $userId));
-
-      if (!$retval) {
-          die('Invalid query: ' . mysql_error());
-      }
   }
   function getAllSnippets($userId){
     global $conn;
-    // global $db;
-    // $sql = sprintf("SELECT snippet, id FROM snippet WHERE userId=%s ORDER BY createdAt DESC;", $userId);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn);
 
     $retval = $conn->prepare("SELECT snippet, id FROM snippet WHERE userId = :userId ORDER BY createdAt DESC;");
     $retval->execute(array('userId' => $userId));
-
-    if (!$retval) {
-      die('Could not get snippets: ' . mysql_error());
-    }
 
     $arr = array();
     foreach ($retval as $row) {
@@ -259,32 +168,15 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
   }
   function setIcon($id, $icon){
     global $conn;
-    // global $db;
-    //
-    // $sql = sprintf("UPDATE `user` SET icon='%s' WHERE id=%s;", $icon, $id);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("UPDATE user SET icon = :icon WHERE id = :id;");
     $retval->execute(array('id' => $id, 'icon' => $icon));
-
-    if (!$retval) {
-      die('Could not update icon: ' . mysql_error());
-    }
   }
   function getIcon($id){
     global $conn;
-    // global $db;
-    // $sql = sprintf("SELECT icon FROM user WHERE id=%s;", $id);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("SELECT icon FROM user WHERE id = :id;");
     $retval->execute(array('id' => $id));
-
-    if (!$retval) {
-      die('Could not get icon: ' . mysql_error());
-    }
 
     foreach ($retval as $row) {
       return $row[0];
@@ -292,31 +184,15 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
   }
   function createFile($fileName, $userId){
     global $conn;
-    // global $db;
-    // $sql = sprintf("INSERT INTO file (userId, fileName) VALUES ('%s', '%s');", $userId, $fileName);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
 
     $retval = $conn->prepare("INSERT INTO file (userId, fileName) VALUES (:id, :fileName);");
     $retval->execute(array('id' => $id, 'fileName' => $fileName));
-
-    if (!$retval) {
-      die('Could not create snippet: ' . mysql_error());
-    }
   }
   function getAllFiles($userId){
     global $db;
-    // global $conn;
-    // $sql = sprintf("SELECT fileName, id FROM snippet WHERE userId=%s ORDER BY createdAt DESC", $userId);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn);
 
     $retval = $conn->prepare("SELECT fileName, id FROM snippet WHERE userId = :id ORDER BY createdAt DESC");
     $retval->execute(array('id' => $userId));
-
-    if (!$retval) {
-      die('Could not get files: ' . mysql_error());
-    }
 
     $arr = array();
     foreach ($retval as $row) {
@@ -325,53 +201,14 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
     return $arr;
   }
-  function isAdmin($id){
+  function canUserPost($id){
     global $conn;
-    // global $db;
-    // $sql = sprintf("SELECT isAdmin FROM user WHERE id=%s;", $id);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
 
-    $retval = $conn->prepare("SELECT isAdmin FROM user WHERE id = :id;");
+    $retval = $conn->prepare("SELECT canPost FROM user WHERE id = :id;");
     $retval->execute(array('id' => $id));
-
-    if (!$retval) {
-      die('Could not get icon: ' . mysql_error());
-    }
 
     foreach ($retval as $row) {
-      return $row['isAdmin'];
+      return $row['canPost'];
     }
   }
-  function promoteUser($id){
-    global $conn;
-    // global $db;
-    //
-    // $sql = sprintf("UPDATE  `user` SET isAdmin='1' WHERE id=%s;", $id);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
-
-    $retval = $conn->prepare("UPDATE  `user` SET isAdmin='1' WHERE id = :id;");
-    $retval->execute(array('id' => $id));
-
-    if (!$retval) {
-      die('Could not update icon: ' . mysql_error());
-    }
-  }
-  function unpromoteUser($id){
-    global $conn;
-    // global $db;
-    //
-    // $sql = sprintf("UPDATE  `user` SET isAdmin='0' WHERE id=%s;", $id);
-    // mysql_select_db($db);
-    // $retval = mysql_query( $sql, $conn );
-
-    $retval = $conn->prepare("UPDATE  `user` SET isAdmin='0' WHERE id = :id;");
-    $retval->execute(array('id' => $id));
-
-    if (!$retval) {
-      die('Could not update icon: ' . mysql_error());
-    }
-  }
-
 ?>
