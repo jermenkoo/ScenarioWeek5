@@ -24,7 +24,7 @@
             echo '</span>' . '<a href="/src/view/snippets.php?userId=' . $user['id'] .
             "&userName=" . $user['username'] . '"><span>All snippets</span></a>';
 
-            if (isset($_COOKIE['user']) && $user['homepage'] && $_COOKIE['isAdmin'] && validCredentials($_COOKIE['user'], $_COOKIE['pw'])) {
+            if (SessionManager::isLoggedIn()) {
               echo '&nbsp;<a href="' . $user['homepage'] .  '">Homepage</a>';
             }
             ?>

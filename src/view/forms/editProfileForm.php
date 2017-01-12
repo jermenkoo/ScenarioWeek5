@@ -3,20 +3,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-if (isset($_COOKIE['user']) && isset($_COOKIE['pw']) && validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
-
-    if (isset($_COOKIE['isAdmin']) && $_COOKIE['isAdmin']){
-        $isAdmin = True;
-        if (isset($_GET['userID'])) {
-            $userID = $_GET['userID'];
-        } else { $userID = validCredentials($_COOKIE['user'], $_COOKIE['pw'])[1];}
-    } else {
-        $userID = validCredentials($_COOKIE['user'], $_COOKIE['pw'])[1];
-        $isAdmin = False;
-    }
-
+if (SessionManager::isLoggedIn()) {
     $data = array();
-    $data = getUserData($userID);
+    $data = getUserData($_SESSION['userID']);
+    // if wanna check if current logged in user is an admin:
+    // SessionManager::isAdmin()
 ?>
 <form action="/src/logic/updateUser.php" method="GET">
 Username: <input type="textfield" name="username" value="<?php echo $data['username']; ?>"></br>

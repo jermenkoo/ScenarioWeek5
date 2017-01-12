@@ -6,16 +6,15 @@
     <body>
 
     <?php
-    include '../../../db.php';
-    include '../header.php';
+  include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
 
     // User already logged in
-    if (isset($_COOKIE['user']) && isset($_COOKIE['pw'])) {
+    if (SessionManager::isLoggedIn()) {
       echo "<div class='file-upload'>";
       include '../forms/editProfileForm.php';
       echo "</div>";
     } else {
-      header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
+      header('Location: ' . $URL . '/index.php');
     }
     ?>
     </body>

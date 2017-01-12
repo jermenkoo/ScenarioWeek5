@@ -11,7 +11,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
 
     <?php
     include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
-    
+
     if (isset($_POST['username']) && isset($_POST['password'])){
         $valid = validCredentials($_POST['username'], $_POST['password']);
         $isAdmin = (bool) $valid[2];
@@ -22,6 +22,7 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
             $_POST = array();
             $_SESSION['userID'] = $userID;
             $_SESSION['isAdmin'] = $isAdmin;
+            header('Location: ' . $URL . '/index.php');
         }
     } else {
         include '../forms/loginForm.php';
