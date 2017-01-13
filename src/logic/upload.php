@@ -14,16 +14,17 @@ if (file_exists($target_file)) {
     $uploadOk = 0;
 }
 
-$q = getimagesize($_FILES["fileToUpload"]["name"]);
+$q = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 if (empty($q)) {
-  header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] .
-  '/src/view/uploadFile.php?error=' . "Bad file type.");
+  echo $q;
+  //header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/src/view/uploadFile.php?error=' . "Bad file type.");
   $uploadOk = 0;
 }
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+    echo $q;
+    // echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
