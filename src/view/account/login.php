@@ -31,7 +31,9 @@
             setcookie("id", $valid[1], time() + (86400 * 30), '/');
             setcookie("isAdmin", $valid[2], time() + (86400 * 30), '/');
             echo "isadmin" . $valid[2];
-            header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
+            header('Location: ' . $_POST['next']);
+            //header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/src/view/account/login.php?url=http://localhost:8080/index.php');
+            // header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
         } else {
             echo '<center>';
             include '../forms/loginForm.php';
