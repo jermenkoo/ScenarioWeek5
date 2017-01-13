@@ -84,6 +84,15 @@
       'ON DELETE RESTRICT, '.
       'primary key ( id ))');
     $retval->execute();
+
+    $retval = $conn->prepare('CREATE TABLE `login_attempts` (
+      `username` varchar(50) NOT NULL,
+      `ip_address` varchar(50) NOT NULL,
+      `time` datetime NOT NULL,
+      `attempts` INT NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;');
+    $retval->execute();
+
   } catch (PDOException $e) {
     echo 'Error' . $e->getMessage();
     die("DB ERROR: ". $e->getMessage());

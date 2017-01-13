@@ -5,8 +5,7 @@
     <body>
 
     <?php
-    include '../../../db.php';
-    include '../header.php';
+    include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
 
     if (isset($_COOKIE['user']) && isset($_COOKIE['pw'])) {
         // User already logged in

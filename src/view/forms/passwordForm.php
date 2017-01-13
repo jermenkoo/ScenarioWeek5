@@ -1,7 +1,5 @@
 <?php
-error_reporting(0);
-
-if (SessionManager::isLoggedIn() && isset($_GET['userID'])) {
+  if (SessionManager::isLoggedIn() && isset($_GET['userID'])) {
     if ($_SESSION['userID'] == $_GET['userID'] || SessionManager::isAdmin()){
         $data = array();
         $data = getUserData($_GET['userID']);

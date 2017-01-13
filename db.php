@@ -1,19 +1,27 @@
 <?php
-error_reporting(0);
-?>
-
-<?php
   include 'config.php';
-  $db = 'test_db';
+  include('src/logic/bruteforce/autoload.php');
+  include('src/logic/bruteforce/block.php');
 
   function validCredentials($username, $password){
     global $conn;
+    global $block;
+
+    $res = $block->isBlock($username);
+    if ($res) {
+      return [false, 2, -1];
+    }
 
     $retval = $conn->prepare("SELECT password, id, isAdmin FROM user WHERE username = :name;");
     $retval->execute(array('name' => $username));
 
     foreach ($retval as $row) {
       if (password_verify($password, $row['password'])) {
+        $old_time = $block->blockTime;
+        $block->blockTime = 0;
+        $block->deleteRecord($username);
+        $block->blockTime = $old_time;
+
         return [true, $row['id'], $row['isAdmin']];
       } else {
         return [false, -1, -1];

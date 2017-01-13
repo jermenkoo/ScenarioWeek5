@@ -1,10 +1,9 @@
 <?php
-include('../../db.php');
     if (!isset($_GET['username']) || (!isset($_GET['password']) )){ ?>
         <div class="account-form">
           <h2>Sign up</h2>
           <form action="<?php echo basename($_SERVER['PHP_SELF']); ?>" method="get">
-              User Name </br>
+              Username </br>
               <input type="text" name="username"></br>
               Password </br>
               <input type="password" name="password"></br>
