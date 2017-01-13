@@ -9,10 +9,10 @@
     if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
         continue;
     }
-    echo "HELLOOOO";
     $dbhost = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
     $dbuser = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
     $dbpass = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
+    echo $dbhost;
   }
 
   try {
