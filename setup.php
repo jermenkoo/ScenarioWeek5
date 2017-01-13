@@ -29,7 +29,9 @@
     echo "Database test_db created successfully\n";
 
     // Connect to db
-    $conn = new PDO('mysql:dbname=test_db;host=' . $dbhost . ';charset=utf8', $dbuser, $dbpass);
+    $conn = new PDO('mysql:host=' . $dbhost .  ';dbname=test_db;charset=utf8', $dbuser, $dbpass);
+
+    echo "connection created";
 
     $conn->exec("CREATE TABLE user(
       id INT NOT NULL AUTO_INCREMENT,
@@ -43,7 +45,7 @@
       privSnippet VARCHAR(10000),
       UNIQUE (username),
       primary key ( id ))");
-
+    echo "table user created";
     // $tableSnippet = 'CREATE TABLE snippet( '.
     //   'id INT NOT NULL AUTO_INCREMENT, '.
     //   'snippet  VARCHAR(10000) NOT NULL, '.
