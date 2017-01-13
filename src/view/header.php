@@ -5,10 +5,11 @@
     include ($_SERVER['DOCUMENT_ROOT'] . "/db.php");
     SessionManager::sessionStart("user");
 
-    if (isset($_GET['logout'])){
+    if (isset($_GET['logout'])) {
         $_SESSION = array();
         session_destroy();
     }
+
     if (SessionManager::isLoggedIn()) { ?>
         <a href="<?php echo $URL ?>/src/view/account/editProfile.php">
         <div class="user">
@@ -42,10 +43,11 @@
 
         <?php
     } else { ?>
-        <div></div>
+        <div>
+        </div>
             <div class='nav-buttons'>
-            <a href='/src/view/account/login.php'><span class='user-button'>Log in</span></a>
-            <a href='/src/view/account/signup.php'><span class='user-button'>Sign up</span></a>
+                <a href='/src/view/account/login.php'><span class='user-button'>Log in</span></a>
+                <a href='/src/view/account/signup.php'><span class='user-button'>Sign up</span></a>
             </div>
     <?php
     }
