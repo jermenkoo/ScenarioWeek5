@@ -37,7 +37,6 @@
 
     foreach ($retval as $row) {
       if (password_verify($password, $row['password'])) {
-        echo $row;
         return True;
       } else {
         return False;
@@ -125,9 +124,7 @@
 
     $retval = $conn->prepare("UPDATE user SET password = :newPW  WHERE id = :id;");
     $retval->execute(array('id' => $userId, 'newPW' => md5($newPW)));
-
-    echo var_dump($retval);
-
+    
     foreach ($retval as $row) {
       return True;
     }
