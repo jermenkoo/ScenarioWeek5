@@ -4,7 +4,6 @@
   $dbhost = 'localhost';
   $dbuser = 'root';
   $dbpass = 't*_41sRwJw-jvHR';
-  echo "start";
   foreach ($_SERVER as $key => $value) {
     if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
         continue;
@@ -12,7 +11,6 @@
     $dbhost = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
     $dbuser = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
     $dbpass = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
-    echo $dbhost;
   }
 
   try {
@@ -45,7 +43,6 @@
       privSnippet VARCHAR(10000),
       UNIQUE (username),
       primary key ( id ))");
-    echo "table user created";
     // $tableSnippet = 'CREATE TABLE snippet( '.
     //   'id INT NOT NULL AUTO_INCREMENT, '.
     //   'snippet  VARCHAR(10000) NOT NULL, '.

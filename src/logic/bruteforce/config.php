@@ -20,6 +20,15 @@ namespace BlockBruteForce
 	$dbpassword='t*_41sRwJw-jvHR';//database password
 	$host ='localhost';//database host
 
+	foreach ($_SERVER as $key => $value) {
+    if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
+        continue;
+    }
+    $host = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
+    $dbusername = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
+    $dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
+  }
+
 	//configuration for development environment
 	$maxAttempt = 4;
 	$blockTime = 10; //block for 10 minutes
