@@ -11,7 +11,11 @@
     // User already logged in
     if (isset($_COOKIE['user']) && isset($_COOKIE['pw'])) {
         if (validCredentials($_COOKIE['user'], $_COOKIE['pw'])[0]) {
+          if ($_GET['url']) {
+            header('Location: ' . $_GET['url']);
+          } else {
             header('Location: ' . 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/index.php');
+          }
         } else { // Cookies not valid anymore
             setcookie("user", "", time() - 3600);
             setcookie("pw", "", time() - 3600);
