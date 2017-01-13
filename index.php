@@ -1,7 +1,5 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
+error_reporting(0);
 ?>
 
 <html>
@@ -15,7 +13,8 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
     include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
     // check whether the use wants to log out, if yes, destroy session
         include 'src/view/publicUsersTable.php';
-    echo '<pre>';
-    echo '</pre>';
+        echo '<pre>';
+        var_dump($_SESSION);
+        echo '</pre>';
     ?></body>
 </html>

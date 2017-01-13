@@ -6,9 +6,7 @@
     <body>
       <?php
         include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
+        error_reporting(0);
 
         // Not logged in
         if (!SessionManager::isAdmin()) {
