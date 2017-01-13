@@ -19,12 +19,18 @@
           $canPost = canUserPost($updateID);
         }
 
-        updateUserData($updateID, getData('username'), getData('iconURL'), getData('profileColour'), getData('snippet'), getData('homepage'), $admin, $canPost);;
+        if (strpos(getData('profileColour'), ";") !== false) {
+          header('Location: ' . $URL . '/');
+          die();
+        }
+
+        updateUserData($updateID, getData('username'), getData('iconURL'), getData('profileColour'), getData('snippet'), getData('homepage'), $admin, $canPost);
+        header('Location: ' . $URL . '/');
     }
   } catch (Exception $e) {
     echo 'CSRF detected';
   }
 
-  header('Location: ' . $URL . '/');
+
   die();
 ?>

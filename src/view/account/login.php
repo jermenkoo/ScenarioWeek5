@@ -7,10 +7,6 @@
     <?php
     include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
 
-    if (isset($_GET['error'])) {
-      echo $_GET['error'];
-    }
-
     echo '<center>';
     include '../forms/loginForm.php';
     echo '</center>';

@@ -18,6 +18,7 @@ if (file_exists($target_file)) {
 
 if ($_FILES["fileToUpload"]["type"] != "image/jpeg") {
     header('Location: ' . $URL . '/src/view/uploadFile.php?error=' . "File is not an image!");
+    die();
     $uploadOk = 0;
 }
 

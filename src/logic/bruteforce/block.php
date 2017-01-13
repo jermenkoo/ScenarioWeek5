@@ -16,7 +16,7 @@ namespace BlockBruteForce
     $block = new BlockBruteForce($config);
 
     //enable the debug output status
-    $block->setEnableDebug($dev['debugEnable']);
+    //$block->setEnableDebug($dev['debugEnable']);
 
     //attempt to connect
     $block->connect();
