@@ -25,6 +25,8 @@ class SessionManager {
         session_set_cookie_params($limit, $path, $domain, $https, true);
         session_start();
 
+        include_once('nocsrf.php');
+
         // Make sure the session hasn't expired, and destroy it if it has
         if(self::validateSession())
         {

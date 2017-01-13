@@ -6,7 +6,6 @@
     SessionManager::sessionStart("user");
 
     if (isset($_GET['logout'])){
-        echo 'issset';
         $_SESSION = array();
         session_destroy();
     }

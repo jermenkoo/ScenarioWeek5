@@ -40,17 +40,26 @@ error_reporting(E_ALL ^ E_DEPRECATED ^ E_WARNING);
           die();
         } else {
             if (isset($_POST["snippet"])) {
+              try {
+                NoCSRF::check('csrf_token', $_POST, true, 60*10, false);
+
                 createSnippet($_POST["snippet"], $_SESSION['userID']);
-                $_POST = array();
-            }
-            else if (isset($_GET['delete'])){
+              } catch (Exception $e) {
+                echo 'CSRF detected';
+              }
+            } else if (isset($_GET['delete'])){
                 deleteSnippet($_GET['delete'], $_SESSION['userID']);
-            }  ?>
+            }
+          ?>
+
+          <?php $token = NoCSRF::generate('csrf_token'); ?>
+
             <div>
                 <div class="snippet-form">
                     <textarea name="snippet" form="snippet">Enter your snippet</textarea>
                     <form class="snippet-form" action="<?php echo basename($_SERVER['PHP_SELF']); ?>" id="snippet" method="POST">
-                        <input value="Create" type="submit">
+                      <input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
+                      <input value="Create" type="submit">
                     </form>
                 </div>
             </div>
