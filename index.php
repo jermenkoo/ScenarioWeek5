@@ -10,11 +10,15 @@ error_reporting(0);
     <body>
 
     <?php
-    include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
-    // check whether the use wants to log out, if yes, destroy session
+        include ($_SERVER['DOCUMENT_ROOT'] . "/src/view/header.php");
+        // check whether the use wants to log out, if yes, destroy session
         include 'src/view/publicUsersTable.php';
+        /*
         echo '<pre>';
         var_dump($_SESSION);
         echo '</pre>';
-    ?></body>
+        */
+    ?>
+
+    </body>
 </html>
