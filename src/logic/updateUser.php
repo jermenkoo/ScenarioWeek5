@@ -6,8 +6,6 @@
       } else { return "" ; }
   }
 
-  // echo var_dump($_POST);
-
   try {
     NoCSRF::check( 'csrf_token', $_POST, true, 60*10, false );
 
