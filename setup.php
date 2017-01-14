@@ -66,6 +66,23 @@
     die('Could not create table: ' . mysql_error());
   }
 
+  $tableFile = 'CREATE TABLE bug( '.
+    'id INT NOT NULL AUTO_INCREMENT, '.
+    'txt  VARCHAR(10000) NOT NULL, '.
+    'userId INT NOT NULL, '.
+    'FOREIGN KEY fkUser(userId) '.
+    'REFERENCES user(id) '.
+    'ON UPDATE CASCADE '.
+    'ON DELETE RESTRICT, '.
+    'primary key ( id ))';
+  mysql_select_db('test_db');
+  $retval = mysql_query( $tableFile, $conn );
+
+
+  if(! $retval ) {
+    die('Could not create table: ' . mysql_error());
+  }
+
   echo "Tables user, snippet, file created successfully\n";
   createUser("marco", "123");
   createUser("jaro", "123");
