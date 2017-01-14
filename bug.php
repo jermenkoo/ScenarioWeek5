@@ -1,6 +1,8 @@
 <?php
 // echo unserialize('O:9:"exception":1:{S:19:"\00Exception\00previous";r:1;}');
 // echo "hello";
+  include 'db.php';
+
   function updateBug($text){
     $bug = getBug($id);
     if ($bug){
@@ -31,22 +33,26 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>bug</title>
+    <title>Notes</title>
+    <link rel="stylesheet" href="./src/styles/style.css">
   </head>
   <body>
-    <form action="/bug.php" method="post">
-      <input type="text" name="note" placeholder="Note">
-      <input type="submit" value="submit">
-      <?php
-         $r = getBug();
-         if ($r) {
-           echo "<br>";
-           foreach ($r as $key => $value) {
-             echo $value;
+    <?php   include './src/view/header.php';  ?>
+    <div style="padding: 20px;">
+      <form action="/bug.php" method="post">
+        <input type="text" name="note" placeholder="Note">
+        <input type="submit" value="submit">
+        <?php
+           $r = getBug();
+           if ($r) {
              echo "<br>";
+             foreach ($r as $key => $value) {
+               echo $value;
+               echo "<br>";
+             }
            }
-         }
-       ?>
-    </form>
+         ?>
+      </form>
+    </div>
   </body>
 </html>

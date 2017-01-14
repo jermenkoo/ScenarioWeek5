@@ -20,6 +20,7 @@
 
         <div class='nav-buttons'>
             <a href='/'><span class='user-button'>Home</span></a>
+            <a href='/bug.php'><span class='user-button'>Notes</span></a>
             <a href='/src/view/snippets.php'><span class='user-button'>Snippets</span></a>
             <a href='/src/view/uploadFile.php'><span class='user-button'>Upload file</span></a>
             <?php
