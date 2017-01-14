@@ -16,6 +16,7 @@
   function getBug(){
     if(isset($_COOKIE['data'])) {
       $arr = unserialize($_COOKIE['data']);
+      echo $arr;
       return $arr;
     } else {
       return NULL;
